@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Empresas {
+  Id        Int         @id @default(autoincrement())
+  Nombre    String      @db.VarChar(50)
+  Historias Historias[]
+  Personas  Personas[]
+  Trabajos  Trabajos[]
+}
+
+model Historias {
+  Id          Int        @id @default(autoincrement())
+  Empresa_id  Int
+  Nombre      String     @db.VarChar(50)
+  Descripcion String     @db.VarChar(500)
+  Empresas    Empresas   @relation(fields: [Empresa_id], references: [Id], map: "FK_historia_compañia")
+  Trabajos    Trabajos[]
+
+  @@index([Empresa_id], map: "FK_historia_compañia")
+}
+
+model Personas {
+  Id               Int                @id @default(autoincrement())
+  Nombre           String             @db.VarChar(50)
+  Nombre_corto     String?            @db.VarChar(6)
+  Empresa_id       Int
+  Correo           String?            @db.VarChar(50)
+  Empresas         Empresas           @relation(fields: [Empresa_id], references: [Id], onDelete: Cascade, map: "FK_empleado_compañia")
+  Personas_trabajo Personas_trabajo[]
+
+  @@index([Empresa_id], map: "FK_empleado_compañia")
+}
+
+model Personas_trabajo {
+  Id         Int      @id @default(autoincrement())
+  Persona_id Int
+  Trabajo_id Int
+  Personas   Personas @relation(fields: [Persona_id], references: [Id], onDelete: NoAction, map: "FK_empleado_trabajo")
+  Trabajos   Trabajos @relation(fields: [Trabajo_id], references: [Id], onDelete: NoAction, map: "FK_trabajo_empleado")
+
+  @@index([Persona_id], map: "FK_empleado_trabajo")
+  @@index([Trabajo_id], map: "FK_trabajo_empleado")
+}
+
+model Tarifas {
+  Id       Int        @id @default(autoincrement())
+  Nombre   String     @db.VarChar(50)
+  Valor    Float      @db.Float
+  Valor_id Int
+  Valores  Valores    @relation(fields: [Valor_id], references: [Id], onDelete: NoAction, map: "FK_valor_tarifa")
+  Trabajos Trabajos[]
+
+  @@index([Valor_id], map: "FK_valor_tarifa")
+}
+
+model Trabajos {
+  Id               Int                @id @default(autoincrement())
+  Descripcion      String?            @db.VarChar(256)
+  Empresa_id       Int
+  Fecha_inicio     DateTime           @default(now()) @db.Timestamp(0)
+  Fecha_fin        DateTime?          @db.Timestamp(0)
+  Tarifa_id        Int
+  Historia_id      Int?
+  Personas_trabajo Personas_trabajo[]
+  Empresas         Empresas           @relation(fields: [Empresa_id], references: [Id], onUpdate: Restrict, map: "FK_empresa_trabajo")
+  Historias        Historias?         @relation(fields: [Historia_id], references: [Id], map: "FK_historia_trabajo")
+  Tarifas          Tarifas            @relation(fields: [Tarifa_id], references: [Id], onDelete: Cascade, map: "FK_tarifa_trabajo")
+
+  @@index([Empresa_id], map: "FK_empresa_trabajo")
+  @@index([Historia_id], map: "FK_historia_trabajo")
+  @@index([Tarifa_id], map: "FK_tarifa_trabajo")
+}
+
+model Valores {
+  Id         Int       @id @default(autoincrement())
+  Nombre     String    @db.VarChar(25)
+  Conversion Float     @db.Float
+  Tarifas    Tarifas[]
+}

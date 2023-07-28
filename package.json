@@ -1,0 +1,21 @@
+{
+  "name": "generador_reportes",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "repository": "git@github.com:reyking/LGS-Cons_gen.git",
+  "author": "hans <hansraddatzg@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node index.ts"
+  },
+  "dependencies": {
+    "@prisma/client": "5.0.0",
+    "prisma": "^5.0.0",
+    "ts-node": "^10.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.5",
+    "tsc": "^2.0.4",
+    "typescript": "^5.1.6"
+  }
+}
