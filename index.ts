@@ -1,9 +1,25 @@
 import { PrismaClient } from '@prisma/client'
-
+import { exec } from "child_process";
+const outDir = `build`
+const auxDir = `aux`
+const file = `test.tex`
+const command= `pdflatex -aux-directory=${auxDir} -output-directory=${outDir} ${file}`
 const prisma = new PrismaClient()
 
+
+
 async function main() {
-  // ... you will write your Prisma Client queries here
+  exec(command,(error,stdout,stderr)=>{
+    if (error) {
+      console.log(`error: ${error.message}`);
+      return;
+  }
+  if (stderr) {
+      console.log(`stderr: ${stderr}`);
+      return;
+  }
+  console.log(`stdout: ${stdout}`);
+  })
 }
 
 main()

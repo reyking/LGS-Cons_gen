@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{hhline} % For highlighting table borders
+
+\begin{document}
+
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hhline{----}
+        \textbf{n°} & 
+        \textbf{
+            \begin{tabular}{c}
+                Nombre Historia \\
+                \hhline{=}
+                Detalle Tarea
+            \end{tabular} } & 
+            \textbf{
+\begin{tabular}{c}
+    Detalle
+\end{tabular}
+            }        & \textbf{Tiempo[hrs]} \\
+        \hline
+                    & \textbf{Detalle tarea}              & \textbf{Tipo honorario} &                      \\
+        \hhline{|=|=|=|=|}
+        % First row
+        1           & historia 1                          & desarrollo 1            &                      \\ \hline
+        2           & historia 2                          & desarrollo 2            & 4.5                  \\ \hline
+        3           & 3 \begin{tabular}{c}
+            asd \\
+            dsa
+        \end{tabular}         & dada                    & 2                    \\ \hline
+    \end{tabular}
+\end{table}
+
+
+
+
+\end{document}
