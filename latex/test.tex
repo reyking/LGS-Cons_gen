@@ -1,35 +1,70 @@
 \documentclass{article}
 \usepackage{hhline} % For highlighting table borders
+\usepackage{hyperref}
 
 \begin{document}
 
+\section{Historias desarrolladas}
+En la siguiente tablas se presentan las historias realizadas y su tiempo total por cada tipo de tarifa
 
 \begin{table}[htbp]
     \centering
     \begin{tabular}{|c|c|c|c|}
-        \hhline{----}
-        \textbf{n°} & 
-        \textbf{
-            \begin{tabular}{c}
-                Nombre Historia \\
-                \hhline{=}
-                Detalle Tarea
-            \end{tabular} } & 
-            \textbf{
-\begin{tabular}{c}
-    Detalle
-\end{tabular}
-            }        & \textbf{Tiempo[hrs]} \\
         \hline
-                    & \textbf{Detalle tarea}              & \textbf{Tipo honorario} &                      \\
-        \hhline{|=|=|=|=|}
-        % First row
-        1           & historia 1                          & desarrollo 1            &                      \\ \hline
-        2           & historia 2                          & desarrollo 2            & 4.5                  \\ \hline
-        3           & 3 \begin{tabular}{c}
-            asd \\
-            dsa
-        \end{tabular}         & dada                    & 2                    \\ \hline
+        \textbf{n°} & \textbf{Nombre Historia} & \textbf{Detalle} & \textbf{Tiempo Total [hrs]}
+        \\ \hline
+        \label{H1}1 & historia1 & historia1detalle & 
+        \begin{tabular}{c}
+            desarrollo 1 \\
+            \hline
+             reuniones 2 \\
+            \hline
+            otros 4 \\
+        \end{tabular} 
+        \\ \hline
+    \end{tabular}
+\end{table}
+
+
+\section{Tareas y detalles}
+A continuacion se prensental las tareas relizadas con su respectiva explicacion, numero de historia padre, personas inlucradas en la realizacion de la tarea si aplica y finalmente un detalle cronologico por cad tipo de tarifa.
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{n°} & \textbf{n°Hist} & \textbf{Detalle Tarea}  & \textbf{Personas} &
+                \begin{tabular}{c}
+                    desarrollo \\
+                    \hline
+                    reuniones \\
+                    \hline
+                    horario invalido \\
+                \end{tabular}
+                [hrs]
+            
+        \\ \hline
+
+        \label{T1}1 & \hyperref[H1]{h1} & tareas1 & \hyperref[P1]{PR} & 
+        \begin{tabular}{c}
+            5.5 \\
+            \hline
+            12/07/23 12:00 = 1 hrs \\
+            \hline
+            12/07/23 12:00 = 1 hrs \\
+        \end{tabular}
+        \\ \hline
+    \end{tabular}
+        
+\end{table}
+
+\section{Personas}
+Listado de personas y su abreviacion para tareas en las que estubieron involucrados.
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Nombre} & \textbf{Abreviacion} \\ \hline
+        Pabro R. & \label{P1} PR \\ \hline
     \end{tabular}
 \end{table}
 
