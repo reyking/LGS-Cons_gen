@@ -1,2 +1,6 @@
 build/*
 aux/*
+*
+!build
+!aux
+!*.tex

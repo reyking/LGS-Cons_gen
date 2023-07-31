@@ -1,25 +1,45 @@
 import { PrismaClient } from '@prisma/client'
-import { exec } from "child_process";
-const outDir = `build`
-const auxDir = `aux`
-const file = `test.tex`
-const command= `pdflatex -aux-directory=${auxDir} -output-directory=${outDir} ${file}`
+import { spawnSync } from "child_process";
+import { readdir, readdirSync, readFileSync, unlinkSync, writeFileSync } from 'fs';
+import { join } from 'path';
+const latexdir = join(__dirname, 'latex')
+const outDir = join(latexdir, `build`)
+console.log(outDir)
+const file = join(latexdir, `test.tex`)
+console.log(file)
+const args = `-output-directory=${outDir}`
+const command = `pdflatex`
 const prisma = new PrismaClient()
 
-
+function executeLatex(latexString: string, name: string) {
+  //crear archivo
+  const infile=join(latexdir, name + '.tex');
+  writeFileSync(infile, latexString);
+  let latex1 = spawnSync(command, [args, infile]);
+  if (latex1.status != 0) throw new Error("no se pudo ejecutar  por primera vez latex");
+  let latex2 = spawnSync(command, [args, infile]);
+  if (latex2.status != 0) throw new Error("no se pudo ejecutar  por primera vez latex");
+  //remover aux
+  let dir = readdir(outDir, (err, files) => {
+    if (err) {
+      console.log("no se encontraron archivos auxiliares omitir boracion");
+      return;
+    }
+    files.forEach(file=>{
+      const fileDir = join(outDir, file);
+        if (file !== name + '.pdf') {
+            unlinkSync(fileDir);
+        }
+    })
+  });
+  //retornar archivo
+  return readFileSync(join(__dirname, 'latex/build/' + name + '.pdf'));
+}
 
 async function main() {
-  exec(command,(error,stdout,stderr)=>{
-    if (error) {
-      console.log(`error: ${error.message}`);
-      return;
-  }
-  if (stderr) {
-      console.log(`stderr: ${stderr}`);
-      return;
-  }
-  console.log(`stdout: ${stdout}`);
-  })
+  const str = '\\documentclass{article} \\begin{document} hola \\end{document}'
+  let pdf = executeLatex(str, 'nuevo');
+
 }
 
 main()
