@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 28-07-2023 a las 19:35:12
+-- Tiempo de generación: 31-07-2023 a las 16:01:47
 -- Versión del servidor: 10.3.39-MariaDB-0+deb10u1
 -- Versión de PHP: 7.3.31-1~deb10u4
 
@@ -135,6 +135,7 @@ INSERT INTO `Personas_trabajo` (`Id`, `Persona_id`, `Trabajo_id`) VALUES
 
 CREATE TABLE `Tarifas` (
   `Id` int(11) NOT NULL,
+  `Empresa_id` int(11) NOT NULL,
   `Nombre` varchar(50) NOT NULL,
   `Valor` float NOT NULL,
   `Valor_id` int(11) NOT NULL
@@ -144,11 +145,11 @@ CREATE TABLE `Tarifas` (
 -- Volcado de datos para la tabla `Tarifas`
 --
 
-INSERT INTO `Tarifas` (`Id`, `Nombre`, `Valor`, `Valor_id`) VALUES
-(5, 'MEGA_desarrollo', 0.69, 2),
-(6, 'MEGA_soporte/incidencias/reuniones (8:00 - 19:00)', 0.87, 2),
-(7, 'MEGA_soporte/incidencias/reuniones_horario_invalid', 1, 2),
-(8, 'MEGA_presencial', 1, 2);
+INSERT INTO `Tarifas` (`Id`, `Empresa_id`, `Nombre`, `Valor`, `Valor_id`) VALUES
+(5, 1, 'MEGA_desarrollo', 0.69, 2),
+(6, 1, 'MEGA_soporte/incidencias/reuniones (8:00 - 19:00)', 0.87, 2),
+(7, 1, 'MEGA_soporte/incidencias/reuniones_horario_invalid', 1, 2),
+(8, 1, 'MEGA_presencial', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -254,6 +255,7 @@ ALTER TABLE `Personas_trabajo`
 --
 ALTER TABLE `Tarifas`
   ADD PRIMARY KEY (`Id`),
+  ADD KEY `FK_compañia_tarifa` (`Empresa_id`),
   ADD KEY `FK_valor_tarifa` (`Valor_id`);
 
 --
@@ -344,7 +346,8 @@ ALTER TABLE `Personas_trabajo`
 -- Filtros para la tabla `Tarifas`
 --
 ALTER TABLE `Tarifas`
-  ADD CONSTRAINT `FK_valor_tarifa` FOREIGN KEY (`Valor_id`) REFERENCES `Valores` (`Id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `FK_compañia_tarifa` FOREIGN KEY (`Empresa_id`) REFERENCES `Empresas` (`Id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_valor_tarifa` FOREIGN KEY (`Valor_id`) REFERENCES `Valores` (`Id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `Trabajos`

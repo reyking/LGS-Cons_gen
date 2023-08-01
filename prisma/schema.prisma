@@ -12,6 +12,7 @@ model Empresas {
   Nombre    String      @db.VarChar(50)
   Historias Historias[]
   Personas  Personas[]
+  Tarifas   Tarifas[]
   Trabajos  Trabajos[]
 }
 
@@ -50,14 +51,17 @@ model Personas_trabajo {
 }
 
 model Tarifas {
-  Id       Int        @id @default(autoincrement())
-  Nombre   String     @db.VarChar(50)
-  Valor    Float      @db.Float
-  Valor_id Int
-  Valores  Valores    @relation(fields: [Valor_id], references: [Id], onDelete: NoAction, map: "FK_valor_tarifa")
-  Trabajos Trabajos[]
+  Id         Int        @id @default(autoincrement())
+  Empresa_id Int
+  Nombre     String     @db.VarChar(50)
+  Valor      Float      @db.Float
+  Valor_id   Int
+  Empresas   Empresas   @relation(fields: [Empresa_id], references: [Id], map: "FK_compañia_tarifa")
+  Valores    Valores    @relation(fields: [Valor_id], references: [Id], map: "FK_valor_tarifa")
+  Trabajos   Trabajos[]
 
   @@index([Valor_id], map: "FK_valor_tarifa")
+  @@index([Empresa_id], map: "FK_compañia_tarifa")
 }
 
 model Trabajos {
