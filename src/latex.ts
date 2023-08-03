@@ -9,21 +9,37 @@ const outDir = join(latexdir, `build`)
 const args = `-output-directory=${outDir}`
 const command = `pdflatex`
 const inicio = `\\documentclass{article}
+\\usepackage[margin=2cm]{geometry}
 \\usepackage{hhline} % For highlighting table borders
 \\usepackage{hyperref}
 \\usepackage{array}
-\\usepackage{longtable}
+\\usepackage{xcolor}
+\\usepackage{longtable,makecell,multirow}
 \\begin{document}`
 const fin = `\\end{document}`
-const finTabla = `\n    \\end{tabular}\n\\end{table} \n \\newpage`
-const finLongTable = `\n    \\end{longtable} \n \\newpage`
+const finTabla = `\n    \\end{tabular}\n\\end{table} \n `
+const finLongTable = `\n    \\end{longtable} \n `
 
-function roudUp(val:number){
-    let ret = Math.ceil(val*100);
-    return ret/100;
+
+
+function createLinkLtx(donde:string | null,nombre?:string):string{
+    if(!donde)return '\nNo label\n'
+    return ` \\label{${donde}}${nombre?nombre:donde} `
 }
-function sanitizar(str:string){
+function linkToLtx(donde:string | null,nombre?:string):string{
+    if(!donde)return '\nNo label\n'
+    return ` \\hyperref[${donde}]{\\color{blue}${nombre?nombre:donde}} `
+}
+
+function roudUp(val: number) {
+    let ret = Math.ceil(val * 100);
+    return ret / 100;
+}
+function sanitizar(str: string) {
     return str.split('_').join('\\_')
+}
+export function abreviacion(str: string) {
+    return str.toUpperCase().split(' ').flatMap(c => c[0]).join('')
 }
 
 
@@ -36,17 +52,12 @@ export function genLtexString(compañias: ({
         }, never> & {})[];
     } & GetResult<{ Id: number; Empresa_id: number; Nombre: string; Descripcion: string; }, never> & {})[];
 } & GetResult<{ Id: number; Nombre: string; }, never> & {})[]): { name: string, data: string }[] {
-    
-    
+
+
     let archivos: { name: string, data: string }[] = [];
     for (const num in compañias) {
         const comp = compañias[num];
         let personas: Personas[] = []
-        let tarifas = `\\begin{tabular}{c}\n`
-        comp.Tarifas.forEach((t, ind)=>{
-            tarifas+= ind?`\\hline ${t.Nombre} \\\\ \n`:`${t.Nombre} \\\\ \n`;
-        })
-        tarifas+=`\\end{tabular}`;
 
         let latex = {
             tablaHistorias: `
@@ -55,59 +66,99 @@ En la siguiente tablas se presentan las historias realizadas y su tiempo total p
 
 \\begin{table}[htbp]
     \\centering
-    \\begin{tabular}{|c|p{3cm}|p{3.5cm}|m{4cm}|}
+    \\begin{tabular}{|c|p{3cm}|p{5.8cm}|c|}
         \\hline
-        \\textbf{n°} & \\textbf{Nombre Historia} & \\textbf{Detalle} & \\textbf{Tiempo Total [hrs]}
+        \\textbf{N°} & \\centering{\\textbf{Nombre Historia}} & \\centering{\\textbf{Detalle}} & \\textbf{Tiempo Total [hrs]}
         \\\\ \\hline`,
             tablaTrabajos: `
 \\section{Tareas y detalles}
-A continuacion se prensental las tareas relizadas con su respectiva explicacion, numero de historia padre, personas inlucradas en la realizacion de la tarea si aplica y finalmente un detalle cronologico por cad tipo de tarifa.
-\\begin{longtable}{|c|c|p{3cm}|c|c|}
+A continuacion se presentan las tareas relizadas con su respectiva explicacion, numero de historia, un acronimo de o las personas involucradas en la realizacion de la tarea si aplica y finalmente un detalle de horas totales trabajadas separado por cada tipo de tarifa.
+
+\\begin{longtable}{|m{0.5cm}|m{1.2cm}|p{6cm}|m{1.5cm}||c|c|c|c||}
         \\hline
-        \\textbf{n°} & \\textbf{n°Hist} & \\textbf{Detalle Tarea}  & \\textbf{Personas} & \\textbf{Horas trabajadas[hrs]} \\\\ \\hline`,
+        \\multirow{2}{=}{\\centering{\\textbf{N°}}} & \\multirow{2}{=}{\\centering{\\textbf{N°Hist}}} & \\multirow{2}{=}{\\centering{\\textbf{Detalle Tarea}}}  & \\multirow{2}{=}{\\textbf{Personas}} &   
+        \\multicolumn{4}{c|}{
+            \\textbf{Horas trabajadas[hrs]}
+        } \\\\ 
+        \\hhline{~~~~----}
+        &&&`,
             tablaPersonas: `
 \\section{Personas}
 Listado de personas y su abreviacion para tareas en las que estubieron involucrados.
 \\begin{table}[htbp]
     \\centering
-    \\begin{tabular}{|c|c|}
-        \\hline`,
+    \\begin{tabular}{|p{6cm}|c|}
+        \\hline
+        \\centering{\\textbf{Nombre}} & \\textbf{abreviacion} \\\\ \\hline`,
+            tablaTarifas: `
+\\section{Tarifas}
+    en la siguiente tabla se presentan las abreviaciones de cada tarifa.
+\\begin{table}[htbp]
+    \\centering
+    \\begin{tabular}{|p{6cm}|c|}
+        \\hline
+        \\centering{\\textbf{Nombre}} & \\textbf{abreviacion} \\\\ \\hline `
         }
+
+        let tarifas = `\\begin{tabular}{c}\n`
+        comp.Tarifas.forEach((t, ind) => {
+            tarifas += ind ? `\\hline ${t.Nombre} \\\\ \n` : `${t.Nombre} \\\\ \n`;
+            latex.tablaTarifas += ` ${t.Nombre} & ${createLinkLtx(abreviacion(t.Nombre))} \\\\ \\hline \n`;
+            latex.tablaTrabajos += `& ${linkToLtx(abreviacion(t.Nombre))} \n`
+        })
+        tarifas += `\\end{tabular}`;
+        latex.tablaTrabajos += `\\\\ \\hline \\hline`
+
 
         for (const hnum in comp.Historias) {
             const hist = comp.Historias[hnum];
-            latex.tablaHistorias += `\n\\label{H${hnum}}${hnum} & ${sanitizar(hist.Nombre)} & ${sanitizar(hist.Descripcion)} &
-            \\begin{tabular}{m{3.5cm}}\n`;
+            latex.tablaHistorias += `\n ${createLinkLtx(hnum)} & ${sanitizar(hist.Nombre)} & ${sanitizar(hist.Descripcion)} &
+            \\begin{tabular}{m{4cm}}\n`;
             let tiempos = new Map<string, number>();
 
             for (const tnum in hist.Trabajos) {
                 const trab = hist.Trabajos[tnum];
                 latex.tablaTrabajos += `
-                \\label{T${tnum}}${tnum} & \\hyperref[H${hnum}]{h${hnum}} & ${sanitizar(trab.Descripcion as string)} &  
+                ${createLinkLtx(tnum)} & ${linkToLtx(hnum)} & ${sanitizar(trab.Descripcion as string)} &  
                 `
+                let n =0;
                 for (const pnum in trab.Personas_trabajo) {
                     const pers = trab.Personas_trabajo[pnum].Personas;
                     if (pers) personas.push(pers)
-                    latex.tablaTrabajos += ` \\hyperref[${pers.Nombre_corto}]{${pers.Nombre_corto}}`
+                    if(n > 0) latex.tablaTrabajos += '\\newline'
+                    latex.tablaTrabajos += ` ${linkToLtx(pers.Nombre_corto)}`
+                    n++;
                 }
                 const horaInicio = moment(trab.Fecha_inicio);
                 const duracion = roudUp(moment(trab.Fecha_fin).diff(horaInicio, "hours", true));
                 const texto = trab.Tarifas.Id < 50 ? duracion + ' hrs' : `${horaInicio.format("DD/MM/YY HH:MM")} = ${duracion} hrs`;
-                latex.tablaTrabajos += ` &
-                \\begin{tabular}{m{3cm}}
-                    ${trab.Tarifas.Nombre} \\\\
-                    `+ texto + `
-                \\end{tabular}
-                \\\\ \\hline`
+                // latex.tablaTrabajos += ` &
+                // \\begin{tabular}{m{3cm}}
+                //     ${trab.Tarifas.Nombre} \\\\
+                //     `+ texto + `
+                // \\end{tabular}
+                // \\\\ \\hline`
+                // latex.tablaTrabajos += `
+                // &${duracion}&${duracion}&${duracion}&${duracion}
+                // \\\\ \\hline`
+                comp.Tarifas.forEach((t, ind) => {
+                    latex.tablaTrabajos += ' & '
+                    if (t.Id == trab.Tarifa_id)
+                    latex.tablaTrabajos += +duracion
+                })
+                latex.tablaTrabajos += `\\\\ \\hline \n`
 
 
                 const tiempoTrabajo = tiempos.get(trab.Tarifas.Nombre)
-                tiempos.set(trab.Tarifas.Nombre,tiempoTrabajo?tiempoTrabajo+duracion:duracion);
+                tiempos.set(trab.Tarifas.Nombre, tiempoTrabajo ? tiempoTrabajo + duracion : duracion);
 
 
             }
+            let nhh=0;
             for (let [keyt, value] of tiempos) {
-                latex.tablaHistorias += `${keyt} = ${roudUp(value)} \\\\ \\hline \n`;
+                if(nhh)latex.tablaHistorias +='\\hline \\hline\n'
+                latex.tablaHistorias += `${keyt} = ${roudUp(value)} \\\\ \n`;
+                nhh++;
             }
             latex.tablaHistorias += `
             \\end{tabular} 
@@ -123,9 +174,9 @@ Listado de personas y su abreviacion para tareas en las que estubieron involucra
         for (const num in personas) {
             const pers = personas[num];
             latex.tablaPersonas += `
-        ${pers.Nombre} & \\label{${pers.Nombre_corto}}${pers.Nombre_corto} \\\\ \\hline`
+        ${pers.Nombre} & ${createLinkLtx(pers.Nombre_corto)} \\\\ \\hline`
         }
-        archivos.push({ name: comp.Nombre, data: inicio + latex.tablaHistorias + finTabla + latex.tablaTrabajos + finLongTable + latex.tablaPersonas + finTabla + fin })
+        archivos.push({ name: comp.Nombre, data: inicio + latex.tablaHistorias + finTabla + latex.tablaTrabajos + finLongTable +'\\newpage'+ latex.tablaPersonas + finTabla + latex.tablaTarifas + finTabla + fin })
     }
     return archivos
 }
@@ -135,7 +186,7 @@ export function executeLatex(latexString: string, name: string) {
     const infile = join(latexdir, name + '.tex');
     writeFileSync(infile, latexString, { flag: "w+" });
 
-    
+
     let latex1 = spawnSync(command, [args, infile]);
     if (latex1.status != 0) throw new Error("no se pudo ejecutar  por primera vez latex");
     let latex2 = spawnSync(command, [args, infile]);
@@ -154,8 +205,8 @@ export function executeLatex(latexString: string, name: string) {
         })
     });
     //retornar archivo
-    
 
-    return readFileSync(join(outDir,  name + '.pdf'));
+
+    return readFileSync(join(outDir, name + '.pdf'));
 
 }

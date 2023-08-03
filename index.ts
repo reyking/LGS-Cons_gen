@@ -1,16 +1,21 @@
 
 import { PrismaClient } from '@prisma/client';
-import { executeLatex, genLtexString } from './src/latex';
+import { abreviacion, executeLatex, genLtexString } from './src/latex';
 const prisma = new PrismaClient()
 
+const test = false
 
 
 async function main() {
-  let str = '\\documentclass{article} \\begin{document} hola \\end{document}'
-  // let pdf = executeLatex(str, 'nuevo');
+  if(!test){
   let contrtatantes = await prisma.empresas.findMany({include:{Tarifas:true,Historias:{include:{Trabajos:{include:{Tarifas:true,Personas_trabajo:{include:{Personas:true}}}}}}}});
   let archivos = genLtexString(contrtatantes);
   archivos.forEach(ar=>executeLatex(ar.data,ar.name))
+}else{
+  console.log(abreviacion("hola est so"))
+
+}
+
 
 }
 

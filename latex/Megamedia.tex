@@ -1,227 +1,168 @@
 \documentclass{article}
+\usepackage[margin=2cm]{geometry}
 \usepackage{hhline} % For highlighting table borders
 \usepackage{hyperref}
 \usepackage{array}
-\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{longtable,makecell,multirow}
 \begin{document}
 \section{Historias desarrolladas}
 En la siguiente tablas se presentan las historias realizadas y su tiempo total por cada tipo de tarifa
 
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{|c|p{3cm}|p{3.5cm}|m{4cm}|}
+    \begin{tabular}{|c|p{3cm}|p{5.8cm}|c|}
         \hline
-        \textbf{n°} & \textbf{Nombre Historia} & \textbf{Detalle} & \textbf{Tiempo Total [hrs]}
+        \textbf{N°} & \centering{\textbf{Nombre Historia}} & \centering{\textbf{Detalle}} & \textbf{Tiempo Total [hrs]}
         \\ \hline
-\label{H0}0 & Integracion de IDP API-PAY & Integracion de IDP para su uso con usuarios de vtr:
+  \label{0}0  & Integracion de IDP API-PAY & Integracion de IDP para su uso con usuarios de vtr:
 - Definicion de uso de api externa
 - Defincion de enpoints
 - Implementacion de endpoints
 - Validar implementacion junto
 - Test unitarios de endpoints desarrollados &
-            \begin{tabular}{m{3.5cm}}
-Desarrollo = 43.33 \\ \hline 
-Soporte y reuniones = 20.94 \\ \hline 
-Soporte y reuniones horario inhábil = 1.5 \\ \hline 
+            \begin{tabular}{m{4cm}}
+Desarrollo = 52.53 \\ 
+\hline \hline
+Soporte y reuniones = 23.77 \\ 
+\hline \hline
+Soporte y reuniones horario inhábil = 1.5 \\ 
 
             \end{tabular} 
             \\ \hline
     \end{tabular}
 \end{table} 
- \newpage
+ 
 \section{Tareas y detalles}
-A continuacion se prensental las tareas relizadas con su respectiva explicacion, numero de historia padre, personas inlucradas en la realizacion de la tarea si aplica y finalmente un detalle cronologico por cad tipo de tarifa.
-\begin{longtable}{|c|c|p{3cm}|c|c|}
+A continuacion se presentan las tareas relizadas con su respectiva explicacion, numero de historia, un acronimo de o las personas involucradas en la realizacion de la tarea si aplica y finalmente un detalle de horas totales trabajadas separado por cada tipo de tarifa.
+
+\begin{longtable}{|m{0.5cm}|m{1.2cm}|p{6cm}|m{1.5cm}||c|c|c|c||}
         \hline
-        \textbf{n°} & \textbf{n°Hist} & \textbf{Detalle Tarea}  & \textbf{Personas} & \textbf{Horas trabajadas[hrs]} \\ \hline
-                \label{T0}0 & \hyperref[H0]{h0} & Definicion de endponts, setup del proyecto, investigacion de idp's &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    1.5 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T1}1 & \hyperref[H0]{h0} & Mockup de endpoints para idp's &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    4.5 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T2}2 & \hyperref[H0]{h0} & Cordinar tareas del mes &  
-                 \hyperref[P.R.]{P.R.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    29/06/23 20:06 = 0.5 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T3}3 & \hyperref[H0]{h0} & Modificar cron para baja de subscripcione; agregar plan\_end\_date y poblar cupones al obtener subscripciones &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    03/07/23 05:07 = 4.25 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T4}4 & \hyperref[H0]{h0} & Cordinacion de boletas y credenciales &  
-                 \hyperref[P.R.]{P.R.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    04/07/23 05:07 = 0.75 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T5}5 & \hyperref[H0]{h0} & Revision y definicion de uso de ToolBox para subscriptores externos &  
-                 \hyperref[M.F.]{M.F.} \hyperref[L.Q.]{L.Q.} \hyperref[E.Q.]{E.Q.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    05/07/23 11:07 = 2.75 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T6}6 & \hyperref[H0]{h0} & Definir endpoints para usuarios externos &  
-                 \hyperref[M.F.]{M.F.} \hyperref[L.Q.]{L.Q.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    07/07/23 08:07 = 1 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T7}7 & \hyperref[H0]{h0} & Review Retro Planning del sprint &  
-                 \hyperref[M.F.]{M.F.} \hyperref[L.Q.]{L.Q.} \hyperref[E.Q.]{E.Q.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    07/07/23 12:07 = 1.25 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T8}8 & \hyperref[H0]{h0} & Conexion con api ToolBox y definicion de tablas &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    3 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T9}9 & \hyperref[H0]{h0} & Creacion de tablas para idps &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    3.53 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T10}10 & \hyperref[H0]{h0} & Revision estado desarrollo idps &  
-                 \hyperref[M.F.]{M.F.} \hyperref[L.Q.]{L.Q.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    11/07/23 13:07 = 1.69 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T11}11 & \hyperref[H0]{h0} & crear tablas, servicios y modelos para idps &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    2.44 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T12}12 & \hyperref[H0]{h0} & Integrar controladores con servicios de idp &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    4.02 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T13}13 & \hyperref[H0]{h0} & Revisar paso a produccion API-PAY(14/07/23) &  
-                 \hyperref[M.F.]{M.F.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    13/07/23 12:07 = 1.25 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T14}14 & \hyperref[H0]{h0} & Deploy api-pay 1.10.3 &  
-                 \hyperref[M.F.]{M.F.} \hyperref[L.Q.]{L.Q.} \hyperref[P.R.]{P.R.} \hyperref[F.D.]{F.D.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones horario inhábil \\
-                    14/07/23 03:07 = 1.5 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T15}15 & \hyperref[H0]{h0} & Test e integracion toolbox &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    3.34 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T16}16 & \hyperref[H0]{h0} & Revision integracion IDP &  
-                 \hyperref[L.Q.]{L.Q.} \hyperref[M.F.]{M.F.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    18/07/23 06:07 = 2 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T17}17 & \hyperref[H0]{h0} & Test de Idp &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    1.5 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T18}18 & \hyperref[H0]{h0} & Finalizar Test unitario para crear usuario con susbcripciones IDP &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    3 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T19}19 & \hyperref[H0]{h0} & Implementacion de controlador test reforzados para sincronizar planes de subscriptores Idp &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    11 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T20}20 & \hyperref[H0]{h0} & Revision implementacion IDP con keycloak &  
-                 \hyperref[L.Q.]{L.Q.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    25/07/23 09:07 = 1 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T21}21 & \hyperref[H0]{h0} & Inclusion de keycloak a endpoints de IDP &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    2.5 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T22}22 & \hyperref[H0]{h0} & Verificar estado de Desarrollo IDP &  
-                 \hyperref[L.Q.]{L.Q.} \hyperref[M.F.]{M.F.} &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    25/07/23 13:07 = 2 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T23}23 & \hyperref[H0]{h0} & Pruebas implementacion global y resolucion de problemas IDP &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Soporte y reuniones \\
-                    28/07/23 12:07 = 2.5 hrs
-                \end{tabular}
-                \\ \hline
-                \label{T24}24 & \hyperref[H0]{h0} & Ajuste de planes Idp, agregar campos para informacion de usuario idp, ajustar test segun nueva implementacion de idp &  
-                 &
-                \begin{tabular}{m{3cm}}
-                    Desarrollo \\
-                    3 hrs
-                \end{tabular}
-                \\ \hline
+        \multirow{2}{=}{\centering{\textbf{N°}}} & \multirow{2}{=}{\centering{\textbf{N°Hist}}} & \multirow{2}{=}{\centering{\textbf{Detalle Tarea}}}  & \multirow{2}{=}{\textbf{Personas}} &   
+        \multicolumn{4}{c|}{
+            \textbf{Horas trabajadas[hrs]}
+        } \\ 
+        \hhline{~~~~----}
+        &&&&  \hyperref[D]{\color{blue}D}  
+&  \hyperref[SYR]{\color{blue}SYR}  
+&  \hyperref[SYRHI]{\color{blue}SYRHI}  
+&  \hyperref[P]{\color{blue}P}  
+\\ \hline \hline
+                 \label{0}0  &  \hyperref[0]{\color{blue}0}  & Definicion de endponts, setup del proyecto, investigacion de idp's &  
+                 & 1.5 &  &  & \\ \hline 
+
+                 \label{1}1  &  \hyperref[0]{\color{blue}0}  & Mockup de endpoints para idp's &  
+                 & 4.5 &  &  & \\ \hline 
+
+                 \label{2}2  &  \hyperref[0]{\color{blue}0}  & Cordinar tareas del mes &  
+                  \hyperref[P.R.]{\color{blue}P.R.}  &  & 0.5 &  & \\ \hline 
+
+                 \label{3}3  &  \hyperref[0]{\color{blue}0}  & Modificar cron para baja de subscripcione; agregar plan\_end\_date y poblar cupones al obtener subscripciones &  
+                 &  & 4.25 &  & \\ \hline 
+
+                 \label{4}4  &  \hyperref[0]{\color{blue}0}  & Cordinacion de boletas y credenciales &  
+                  \hyperref[P.R.]{\color{blue}P.R.}  &  & 0.75 &  & \\ \hline 
+
+                 \label{5}5  &  \hyperref[0]{\color{blue}0}  & Revision y definicion de uso de ToolBox para subscriptores externos &  
+                  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[E.Q.]{\color{blue}E.Q.}  &  & 2.75 &  & \\ \hline 
+
+                 \label{6}6  &  \hyperref[0]{\color{blue}0}  & Definir endpoints para usuarios externos &  
+                  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[L.Q.]{\color{blue}L.Q.}  &  & 1 &  & \\ \hline 
+
+                 \label{7}7  &  \hyperref[0]{\color{blue}0}  & Review Retro Planning del sprint &  
+                  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[E.Q.]{\color{blue}E.Q.}  &  & 1.25 &  & \\ \hline 
+
+                 \label{8}8  &  \hyperref[0]{\color{blue}0}  & Conexion con api ToolBox y definicion de tablas &  
+                 & 3 &  &  & \\ \hline 
+
+                 \label{9}9  &  \hyperref[0]{\color{blue}0}  & Creacion de tablas para idps &  
+                 & 3.53 &  &  & \\ \hline 
+
+                 \label{10}10  &  \hyperref[0]{\color{blue}0}  & Revision estado desarrollo idps &  
+                  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[L.Q.]{\color{blue}L.Q.}  &  & 1.69 &  & \\ \hline 
+
+                 \label{11}11  &  \hyperref[0]{\color{blue}0}  & crear tablas, servicios y modelos para idps &  
+                 & 2.44 &  &  & \\ \hline 
+
+                 \label{12}12  &  \hyperref[0]{\color{blue}0}  & Integrar controladores con servicios de idp &  
+                 & 4.02 &  &  & \\ \hline 
+
+                 \label{13}13  &  \hyperref[0]{\color{blue}0}  & Revisar paso a produccion API-PAY(14/07/23) &  
+                  \hyperref[M.F.]{\color{blue}M.F.}  &  & 1.25 &  & \\ \hline 
+
+                 \label{14}14  &  \hyperref[0]{\color{blue}0}  & Deploy api-pay 1.10.3 &  
+                  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[P.R.]{\color{blue}P.R.} \newline  \hyperref[F.D.]{\color{blue}F.D.}  &  &  & 1.5 & \\ \hline 
+
+                 \label{15}15  &  \hyperref[0]{\color{blue}0}  & Test e integracion toolbox &  
+                 & 3.34 &  &  & \\ \hline 
+
+                 \label{16}16  &  \hyperref[0]{\color{blue}0}  & Revision integracion IDP &  
+                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  &  & 2 &  & \\ \hline 
+
+                 \label{17}17  &  \hyperref[0]{\color{blue}0}  & Test de Idp &  
+                 & 1.5 &  &  & \\ \hline 
+
+                 \label{18}18  &  \hyperref[0]{\color{blue}0}  & Finalizar Test unitario para crear usuario con susbcripciones IDP &  
+                 & 3 &  &  & \\ \hline 
+
+                 \label{19}19  &  \hyperref[0]{\color{blue}0}  & Implementacion de controlador test reforzados para sincronizar planes de subscriptores Idp &  
+                 & 11 &  &  & \\ \hline 
+
+                 \label{20}20  &  \hyperref[0]{\color{blue}0}  & Revision implementacion IDP con keycloak &  
+                  \hyperref[L.Q.]{\color{blue}L.Q.}  &  & 1 &  & \\ \hline 
+
+                 \label{21}21  &  \hyperref[0]{\color{blue}0}  & Inclusion de keycloak a endpoints de IDP &  
+                 & 2.5 &  &  & \\ \hline 
+
+                 \label{22}22  &  \hyperref[0]{\color{blue}0}  & Verificar estado de Desarrollo IDP &  
+                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  &  & 2 &  & \\ \hline 
+
+                 \label{23}23  &  \hyperref[0]{\color{blue}0}  & Pruebas implementacion global y resolucion de problemas IDP &  
+                 &  & 2.5 &  & \\ \hline 
+
+                 \label{24}24  &  \hyperref[0]{\color{blue}0}  & Ajuste de planes Idp, agregar campos para informacion de usuario idp, ajustar test segun nueva implementacion de idp &  
+                 & 3 &  &  & \\ \hline 
+
+                 \label{25}25  &  \hyperref[0]{\color{blue}0}  & Revision desarrollo IDP-VTR &  
+                 &  & 2.25 &  & \\ \hline 
+
+                 \label{26}26  &  \hyperref[0]{\color{blue}0}  & Endpoint para obtener todas las urn por url de idp &  
+                 & 4 &  &  & \\ \hline 
+
+                 \label{27}27  &  \hyperref[0]{\color{blue}0}  & Validar estado de desarrollos idp &  
+                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  &  & 0.58 &  & \\ \hline 
+
+                 \label{28}28  &  \hyperref[0]{\color{blue}0}  & endpoint de filtrar urns por lista de planes y fix de sincronizado de urns &  
+                 & 5.2 &  &  & \\ \hline 
+
     \end{longtable} 
  \newpage
 \section{Personas}
 Listado de personas y su abreviacion para tareas en las que estubieron involucrados.
 \begin{table}[htbp]
     \centering
-    \begin{tabular}{|c|c|}
+    \begin{tabular}{|p{6cm}|c|}
         \hline
-        Pablo Ramirez & \label{P.R.}P.R. \\ \hline
-        Marco Farias & \label{M.F.}M.F. \\ \hline
-        Luiz Quelvez & \label{L.Q.}L.Q. \\ \hline
-        Erik Queirolo & \label{E.Q.}E.Q. \\ \hline
-        Francesco Donato & \label{F.D.}F.D. \\ \hline
+        \centering{\textbf{Nombre}} & \textbf{abreviacion} \\ \hline
+        Pablo Ramirez &  \label{P.R.}P.R.  \\ \hline
+        Marco Farias &  \label{M.F.}M.F.  \\ \hline
+        Luiz Quelvez &  \label{L.Q.}L.Q.  \\ \hline
+        Erik Queirolo &  \label{E.Q.}E.Q.  \\ \hline
+        Francesco Donato &  \label{F.D.}F.D.  \\ \hline
     \end{tabular}
 \end{table} 
- \newpage\end{document}
+ 
+\section{Tarifas}
+    en la siguiente tabla se presentan las abreviaciones de cada tarifa.
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{|p{6cm}|c|}
+        \hline
+        \centering{\textbf{Nombre}} & \textbf{abreviacion} \\ \hline  Desarrollo &  \label{D}D  \\ \hline 
+ Soporte y reuniones &  \label{SYR}SYR  \\ \hline 
+ Soporte y reuniones horario inhábil &  \label{SYRHI}SYRHI  \\ \hline 
+ Presencial &  \label{P}P  \\ \hline 
+
+    \end{tabular}
+\end{table} 
+ \end{document}
