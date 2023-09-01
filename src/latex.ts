@@ -15,20 +15,25 @@ const inicio = `\\documentclass{article}
 \\usepackage{array}
 \\usepackage{xcolor}
 \\usepackage{longtable,makecell,multirow}
-\\begin{document}`
+\\begin{document}
+\\section*{Resumen de actividades realizadas agosto/2023}
+
+En el siguiente reporte se presentan las actividades realizadas por Hans Chritopher Raddatz Garcia durante el mes de agosto del 2023, donde se numeran las actividades principales dentro de la tabla de "Historias" con su total de horas, según las tarifas previamente acordadas, estas tareas principales se subdividen en cada trabajo realizado y estos son descritos en la tabla de "Tareas y detalles" indicando una descripción breve de lo realizado, las personas que estuvieron presente si es que las hubo y el tiempo en horas según cada tarifa.
+Finalmente, se presenta las simbologías de tarifas y personas, además cada texto en azul implica que es un vínculo a su respectiva definición dentro de otra tabla, el cual además es clickeable. 
+`
 const fin = `\\end{document}`
 const finTabla = `\n    \\end{tabular}\n\\end{table} \n `
 const finLongTable = `\n    \\end{longtable} \n `
 
 
 
-function createLinkLtx(donde:string | null,nombre?:string):string{
-    if(!donde)return '\nNo label\n'
-    return ` \\label{${donde}}${nombre?nombre:donde} `
+function createLinkLtx(donde: string | number | null, nombre?: string): string {
+    if (donde === undefined || donde === null) return '\nNo label\n'
+    return ` \\label{${donde}}${nombre ? nombre : donde} `
 }
-function linkToLtx(donde:string | null,nombre?:string):string{
-    if(!donde)return '\nNo label\n'
-    return ` \\hyperref[${donde}]{\\color{blue}${nombre?nombre:donde}} `
+function linkToLtx(donde: string | number | null, nombre?: string): string {
+    if (donde === undefined || donde === null) return '\nNo label\n'
+    return ` \\hyperref[${donde}]{\\color{blue}${nombre ? nombre : donde}} `
 }
 
 function roudUp(val: number) {
@@ -62,29 +67,29 @@ export function genLtexString(compañias: ({
         let latex = {
             tablaHistorias: `
 \\section{Historias desarrolladas}
-En la siguiente tablas se presentan las historias realizadas y su tiempo total por cada tipo de tarifa
+En la siguiente tabla se presentan las historias o desarrollos principales con su nombre y descripción y su tiempo total por cada tipo de tarifa.
 
 \\begin{table}[htbp]
     \\centering
-    \\begin{tabular}{|c|p{3cm}|p{5.8cm}|c|}
+    \\begin{tabular}{|c|p{3cm}|p{5.8cm}|m{4.5cm}|}
         \\hline
         \\textbf{N°} & \\centering{\\textbf{Nombre Historia}} & \\centering{\\textbf{Detalle}} & \\textbf{Tiempo Total [hrs]}
         \\\\ \\hline`,
             tablaTrabajos: `
 \\section{Tareas y detalles}
-A continuacion se presentan las tareas relizadas con su respectiva explicacion, numero de historia, un acronimo de o las personas involucradas en la realizacion de la tarea si aplica y finalmente un detalle de horas totales trabajadas separado por cada tipo de tarifa.
+A continuación se presentan las tareas realizadas con su respectiva explicación, número de historia, un acrónimo de o las personas involucradas en la realización de la tarea si aplica y finalmente un detalle de horas totales trabajadas separado por cada tipo de tarifa.
 
-\\begin{longtable}{|m{0.5cm}|m{1.2cm}|p{6cm}|m{1.5cm}||c|c|c|c||}
+\\begin{longtable}{|m{0.5cm}|m{1.2cm}|p{5cm}|m{1.5cm}|m{1.5cm}||c|c|c|c||}
         \\hline
-        \\multirow{2}{=}{\\centering{\\textbf{N°}}} & \\multirow{2}{=}{\\centering{\\textbf{N°Hist}}} & \\multirow{2}{=}{\\centering{\\textbf{Detalle Tarea}}}  & \\multirow{2}{=}{\\textbf{Personas}} &   
+        \\multirow{2}{=}{\\centering{\\textbf{N°}}} & \\multirow{2}{=}{\\centering{\\textbf{N°Hist}}} & \\multirow{2}{=}{\\centering{\\textbf{Detalle Tarea}}}  & \\multirow{2}{=}{\\textbf{Personas}} & \\multirow{2}{=}{\\textbf{Fecha}} &   
         \\multicolumn{4}{c|}{
-            \\textbf{Horas trabajadas[hrs]}
+            \\textbf{Horas trabajadas [hrs]}
         } \\\\ 
-        \\hhline{~~~~----}
-        &&&`,
+        \\hhline{~~~~~----}
+        &&&&`,
             tablaPersonas: `
 \\section{Personas}
-Listado de personas y su abreviacion para tareas en las que estubieron involucrados.
+Listado de personas y su abreviación para tareas en las que estuvieron involucrados.
 \\begin{table}[htbp]
     \\centering
     \\begin{tabular}{|p{6cm}|c|}
@@ -92,7 +97,7 @@ Listado de personas y su abreviacion para tareas en las que estubieron involucra
         \\centering{\\textbf{Nombre}} & \\textbf{abreviacion} \\\\ \\hline`,
             tablaTarifas: `
 \\section{Tarifas}
-    en la siguiente tabla se presentan las abreviaciones de cada tarifa.
+    En la siguiente tabla se presentan las abreviaciones de cada tarifa.
 \\begin{table}[htbp]
     \\centering
     \\begin{tabular}{|p{6cm}|c|}
@@ -108,43 +113,38 @@ Listado de personas y su abreviacion para tareas en las que estubieron involucra
         })
         tarifas += `\\end{tabular}`;
         latex.tablaTrabajos += `\\\\ \\hline \\hline`
+        
+        let tnum = 0;
+        comp.Historias.forEach((hist, hnum) => {
 
-
-        for (const hnum in comp.Historias) {
-            const hist = comp.Historias[hnum];
+            // for (const hnum in comp.Historias) {
+            //     const hist = comp.Historias[hnum];
             latex.tablaHistorias += `\n ${createLinkLtx(hnum)} & ${sanitizar(hist.Nombre)} & ${sanitizar(hist.Descripcion)} &
             \\begin{tabular}{m{4cm}}\n`;
             let tiempos = new Map<string, number>();
-
-            for (const tnum in hist.Trabajos) {
-                const trab = hist.Trabajos[tnum];
+            hist.Trabajos.forEach((trab) => {
+                // for (const tnum in hist.Trabajos) {
+                // console.log(tnum)
+                //     const trab = hist.Trabajos[tnum];
                 latex.tablaTrabajos += `
                 ${createLinkLtx(tnum)} & ${linkToLtx(hnum)} & ${sanitizar(trab.Descripcion as string)} &  
                 `
-                let n =0;
+                let n = 0;
                 for (const pnum in trab.Personas_trabajo) {
                     const pers = trab.Personas_trabajo[pnum].Personas;
                     if (pers) personas.push(pers)
-                    if(n > 0) latex.tablaTrabajos += '\\newline'
+                    if (n > 0) latex.tablaTrabajos += '\\newline'
                     latex.tablaTrabajos += ` ${linkToLtx(pers.Nombre_corto)}`
                     n++;
                 }
                 const horaInicio = moment(trab.Fecha_inicio);
                 const duracion = roudUp(moment(trab.Fecha_fin).diff(horaInicio, "hours", true));
                 const texto = trab.Tarifas.Id < 50 ? duracion + ' hrs' : `${horaInicio.format("DD/MM/YY HH:MM")} = ${duracion} hrs`;
-                // latex.tablaTrabajos += ` &
-                // \\begin{tabular}{m{3cm}}
-                //     ${trab.Tarifas.Nombre} \\\\
-                //     `+ texto + `
-                // \\end{tabular}
-                // \\\\ \\hline`
-                // latex.tablaTrabajos += `
-                // &${duracion}&${duracion}&${duracion}&${duracion}
-                // \\\\ \\hline`
+                latex.tablaTrabajos += ` & ${horaInicio.format("DD/MM/YY hh:mm")} `
                 comp.Tarifas.forEach((t, ind) => {
                     latex.tablaTrabajos += ' & '
                     if (t.Id == trab.Tarifa_id)
-                    latex.tablaTrabajos += +duracion
+                        latex.tablaTrabajos += +duracion
                 })
                 latex.tablaTrabajos += `\\\\ \\hline \n`
 
@@ -152,11 +152,11 @@ Listado de personas y su abreviacion para tareas en las que estubieron involucra
                 const tiempoTrabajo = tiempos.get(trab.Tarifas.Nombre)
                 tiempos.set(trab.Tarifas.Nombre, tiempoTrabajo ? tiempoTrabajo + duracion : duracion);
 
-
-            }
-            let nhh=0;
+                tnum++;
+            });
+            let nhh = 0;
             for (let [keyt, value] of tiempos) {
-                if(nhh)latex.tablaHistorias +='\\hline \\hline\n'
+                if (nhh) latex.tablaHistorias += '\\hline \\hline\n'
                 latex.tablaHistorias += `${keyt} = ${roudUp(value)} \\\\ \n`;
                 nhh++;
             }
@@ -164,7 +164,8 @@ Listado de personas y su abreviacion para tareas en las que estubieron involucra
             \\end{tabular} 
             \\\\ \\hline`
 
-        }
+            // }
+        })
         //solo personas unicas
         personas = personas.filter((value, index, self) =>
             index === self.findIndex((t) => (
@@ -176,7 +177,7 @@ Listado de personas y su abreviacion para tareas en las que estubieron involucra
             latex.tablaPersonas += `
         ${pers.Nombre} & ${createLinkLtx(pers.Nombre_corto)} \\\\ \\hline`
         }
-        archivos.push({ name: comp.Nombre, data: inicio + latex.tablaHistorias + finTabla + latex.tablaTrabajos + finLongTable +'\\newpage'+ latex.tablaPersonas + finTabla + latex.tablaTarifas + finTabla + fin })
+        archivos.push({ name: comp.Nombre, data: inicio + latex.tablaHistorias + finTabla + latex.tablaTrabajos + finLongTable + '\\newpage' + latex.tablaPersonas + finTabla + latex.tablaTarifas + finTabla + fin })
     }
     return archivos
 }
