@@ -20,54 +20,59 @@ En la siguiente tabla se presentan las historias o desarrollos principales con s
         \hline
         \textbf{N°} & \centering{\textbf{Nombre Historia}} & \centering{\textbf{Detalle}} & \textbf{Tiempo Total [hrs]}
         \\ \hline
-  \label{0}0  & Integracion de IDP API-PAY & Integracion de IDP para su uso con usuarios de vtr:
-- Definicion de uso de api externa
-- Defincion de enpoints
-- Implementacion de endpoints
-- Validar implementacion junto
-- Test unitarios de endpoints desarrollados &
-            \begin{tabular}{m{4cm}}
-Soporte y reuniones = 13.08 \\ 
-\hline \hline
-Desarrollo = 36.21 \\ 
-\hline \hline
-Soporte y reuniones horario inhábil = 2.5 \\ 
-
-            \end{tabular} 
-            \\ \hline
   \label{1}1  & Codigos de error API-PAY & Restructurar los codigos de error que envia api-pay en cada endpoint tal que coincida con el mensaje y razon del error &
             \begin{tabular}{m{4cm}}
-Soporte y reuniones = 1.22 \\ 
-\hline \hline
-Desarrollo = 11 \\ 
+Desarrollo = 1 \\ 
 
             \end{tabular} 
             \\ \hline
   \label{2}2  & Review-retro planing & reunion bimensual para oranizar tareas del sprint &
             \begin{tabular}{m{4cm}}
-Soporte y reuniones = 2.55 \\ 
-
-            \end{tabular} 
-            \\ \hline
-  \label{3}3  & Configuracion/deploy de ambientes & Todo trabajo relacionado a organizar, gestionar o realizar algun deploy en algun ambiente &
-            \begin{tabular}{m{4cm}}
-Soporte y reuniones = 3 \\ 
+Desarrollo = 2 \\ 
 \hline \hline
-Soporte y reuniones horario inhábil = 0.7 \\ 
+Soporte y reuniones = 1.5 \\ 
 
             \end{tabular} 
             \\ \hline
   \label{4}4  & onAir para api-ott/admin & generar atributo y control en admin para estado de "al aire" en las series &
             \begin{tabular}{m{4cm}}
-Desarrollo = 8 \\ 
+Soporte y reuniones horario inhábil = 3 \\ 
 
             \end{tabular} 
             \\ \hline
-  \label{5}5  & control de planes para series & desarrollar control de planes para las series dentro del admin segun los que esten disponibles &
+  \label{6}6  & Hotfix, revision y solucion de errores & Solucion de problemas no programados en historias &
             \begin{tabular}{m{4cm}}
-Soporte y reuniones = 1.92 \\ 
+Soporte y reuniones = 3.5 \\ 
 \hline \hline
-Desarrollo = 20 \\ 
+Desarrollo = 3 \\ 
+\hline \hline
+Soporte y reuniones horario inhábil = 1.5 \\ 
+
+            \end{tabular} 
+            \\ \hline
+  \label{7}7  & Revisión de ventas sin registrar en Odoo & Revisión de ventas sin registrar en Odoo para despubrir proiblemas de implementacion act ual en api pay &
+            \begin{tabular}{m{4cm}}
+Soporte y reuniones = 4 \\ 
+
+            \end{tabular} 
+            \\ \hline
+  \label{8}8  & Reuniones de sincronizacion & Reuniones de sincronizacion no asocidas a alguna historia en particular &
+            \begin{tabular}{m{4cm}}
+Soporte y reuniones = 1 \\ 
+
+            \end{tabular} 
+            \\ \hline
+  \label{9}9  & Problemas de duplicidad de subscripciones & Corregir los problemas encontrados que pueden generar multiplicidad de subscripciones de pago para los clientes &
+            \begin{tabular}{m{4cm}}
+Desarrollo = 7 \\ 
+\hline \hline
+Soporte y reuniones = 2.5 \\ 
+
+            \end{tabular} 
+            \\ \hline
+  \label{10}10  & Dias trial mas 1 & Agregar 1 dia a trial para cumplir con oferta &
+            \begin{tabular}{m{4cm}}
+Soporte y reuniones = 3.5 \\ 
 
             \end{tabular} 
             \\ \hline
@@ -89,69 +94,51 @@ A continuación se presentan las tareas realizadas con su respectiva explicació
 &  \hyperref[SYRHI]{\color{blue}SYRHI}  
 &  \hyperref[P]{\color{blue}P}  
 \\ \hline \hline
-                 \label{0}0  &  \hyperref[0]{\color{blue}0}  & Revision desarrollo IDP-VTR &  
-                  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[L.Q.]{\color{blue}L.Q.}  & 01/08/23 07:00  &  & 2.25 &  & \\ \hline 
+                 \label{0}0  &  \hyperref[1]{\color{blue}1}  & Incluir cambios realizados para merge y probar &  
+                 & 13/09/23 08:00  & 1 &  &  & \\ \hline 
 
-                 \label{1}1  &  \hyperref[0]{\color{blue}0}  & Endpoint para obtener todas las urn por url de idp &  
-                 & 02/08/23 05:00  & 4 &  &  & \\ \hline 
+                 \label{1}1  &  \hyperref[2]{\color{blue}2}  & 	
+review retro planing sprint 61 &  
+                 & 01/09/23 12:00  & 2 &  &  & \\ \hline 
 
-                 \label{2}2  &  \hyperref[0]{\color{blue}0}  & Validar estado de desarrollos idp &  
-                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 02/08/23 01:30  &  & 0.58 &  & \\ \hline 
+                 \label{2}2  &  \hyperref[2]{\color{blue}2}  & Review/retro planing sprint 62 &  
+                 & 15/09/23 09:00  &  & 1.5 &  & \\ \hline 
 
-                 \label{3}3  &  \hyperref[0]{\color{blue}0}  & endpoint de filtrar urns por lista de planes y fix de sincronizado de urns &  
-                 & 02/08/23 03:00  & 5.2 &  &  & \\ \hline 
+                 \label{3}3  &  \hyperref[4]{\color{blue}4}  & Generar release para produccion de api-ott y admin &  
+                 & 13/09/23 02:00  &  &  & 3 & \\ \hline 
 
-                 \label{4}4  &  \hyperref[0]{\color{blue}0}  & fix de problemas con idp, revisar problemas de api-pay (baja de ususarios) &  
-                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 08/08/23 11:00  &  & 3.75 &  & \\ \hline 
+                 \label{4}4  &  \hyperref[6]{\color{blue}6}  & Revisar cambios de paquetes para despliegue &  
+                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 04/09/23 09:00  &  & 2.5 &  & \\ \hline 
 
-                 \label{5}5  &  \hyperref[0]{\color{blue}0}  & Integrar funcionalidades Idp &  
-                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 09/08/23 09:00  &  & 1.25 &  & \\ \hline 
+                 \label{5}5  &  \hyperref[6]{\color{blue}6}  & Solucionar error asincrono de conexion a base de datos en historial de modificaciones &  
+                 & 04/09/23 12:00  & 3 &  &  & \\ \hline 
 
-                 \label{6}6  &  \hyperref[0]{\color{blue}0}  & Funcionalidad de shortName y countrycode Idp &  
-                 & 09/08/23 11:00  & 1 &  &  & \\ \hline 
+                 \label{6}6  &  \hyperref[6]{\color{blue}6}  & Deploy de cambios en paquetes api-pay &  
+                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 05/09/23 04:00  &  &  & 1.5 & \\ \hline 
 
-                 \label{7}7  &  \hyperref[0]{\color{blue}0}  & Continuacion Integrar funcionalidades Idp &  
-                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 09/08/23 12:00  &  & 3.25 &  & \\ \hline 
+                 \label{7}7  &  \hyperref[6]{\color{blue}6}  & Creacion de indices en produccion para postgres de api-pay &  
+                 & 15/09/23 01:00  &  & 1 &  & \\ \hline 
 
-                 \label{8}8  &  \hyperref[0]{\color{blue}0}  & Fix e inventigacion conexion base de datos api-pay &  
-                 & 10/08/23 11:00  & 26 &  &  & \\ \hline 
+                 \label{8}8  &  \hyperref[7]{\color{blue}7}  & Busqueda de problema de pago en clientes con quejas &  
+                 & 05/09/23 07:00  &  & 4 &  & \\ \hline 
 
-                 \label{9}9  &  \hyperref[0]{\color{blue}0}  & Preparar deploy api-apy y test de fix de base de datos &  
-                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 11/08/23 01:00  &  & 2 &  & \\ \hline 
+                 \label{9}9  &  \hyperref[8]{\color{blue}8}  & Reuniones de sinc &  
+                 & 07/09/23 01:00  &  & 1 &  & \\ \hline 
 
-                 \label{10}10  &  \hyperref[0]{\color{blue}0}  & Continuacion preparar deploy api-apy y test de fix de base de datos &  
-                  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 11/08/23 03:00  &  &  & 2.5 & \\ \hline 
+                 \label{10}10  &  \hyperref[9]{\color{blue}9}  & validacion de estados y anulacion de trancciones cuando exista duplicidad previa a enrolamiento &  
+                 & 11/09/23 12:00  & 3 &  &  & \\ \hline 
 
-                 \label{11}11  &  \hyperref[1]{\color{blue}1}  & Investigacion y definicion de errores a tratar &  
-                  \hyperref[L.Q.]{\color{blue}L.Q.}  & 14/08/23 01:30  &  & 1.22 &  & \\ \hline 
+                 \label{11}11  &  \hyperref[9]{\color{blue}9}  & anular transacciones y susbcripciones duplicadas que llegen a enrolarse &  
+                  \hyperref[M.F.]{\color{blue}M.F.}  & 13/09/23 09:00  &  & 1.5 &  & \\ \hline 
 
-                 \label{12}12  &  \hyperref[1]{\color{blue}1}  & Agregar timeout global a api-pay &  
-                 & 14/08/23 10:30  & 3 &  &  & \\ \hline 
+                 \label{12}12  &  \hyperref[9]{\color{blue}9}  & Generar release para produccion de api-pay &  
+                 & 13/09/23 01:00  &  & 1 &  & \\ \hline 
 
-                 \label{13}13  &  \hyperref[1]{\color{blue}1}  & Investigacion y desarrollo para timeout de transacciones &  
-                 & 16/08/23 11:00  & 4 &  &  & \\ \hline 
+                 \label{13}13  &  \hyperref[9]{\color{blue}9}  & Anulacion de multiplicidad de transacciones al confirmar tarjeta &  
+                 & 20/09/23 11:00  & 4 &  &  & \\ \hline 
 
-                 \label{14}14  &  \hyperref[1]{\color{blue}1}  & desarrollo para timeout de transacciones &  
-                 & 17/08/23 05:00  & 4 &  &  & \\ \hline 
-
-                 \label{15}15  &  \hyperref[2]{\color{blue}2}  & review retro planing sprint 60 &  
-                  \hyperref[E.Q.]{\color{blue}E.Q.} \newline  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 18/08/23 12:00  &  & 2.55 &  & \\ \hline 
-
-                 \label{16}16  &  \hyperref[3]{\color{blue}3}  & Configuracion ambiente para aplicaciones api-ott y admin-ott &  
-                  \hyperref[M.F.]{\color{blue}M.F.}  & 24/08/23 12:00  &  & 3 &  & \\ \hline 
-
-                 \label{17}17  &  \hyperref[3]{\color{blue}3}  & Continuacion de configuracion ambiente para aplicaciones api-ott y admin-ott &  
-                  \hyperref[M.F.]{\color{blue}M.F.}  & 24/08/23 03:00  &  &  & 0.7 & \\ \hline 
-
-                 \label{18}18  &  \hyperref[4]{\color{blue}4}  & Soportar nuevo atributo "onAir" en series admin-ott &  
-                 & 24/08/23 08:00  & 8 &  &  & \\ \hline 
-
-                 \label{19}19  &  \hyperref[5]{\color{blue}5}  & 
-Sincronizacion de desarrollo &  
-                  \hyperref[E.Q.]{\color{blue}E.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[L.Q.]{\color{blue}L.Q.}  & 31/08/23 07:30  &  & 1.92 &  & \\ \hline 
-
-                 \label{20}20  &  \hyperref[5]{\color{blue}5}  & Agregar select de planIds para series en admin-ott &  
-                 & 28/08/23 08:00  & 20 &  &  & \\ \hline 
+                 \label{14}14  &  \hyperref[10]{\color{blue}10}  & Revision +1 dia al trial y sus correciones &  
+                 & 12/09/23 08:00  &  & 3.5 &  & \\ \hline 
 
     \end{longtable} 
  \newpage
@@ -162,9 +149,8 @@ Listado de personas y su abreviación para tareas en las que estuvieron involucr
     \begin{tabular}{|p{6cm}|c|}
         \hline
         \centering{\textbf{Nombre}} & \textbf{abreviacion} \\ \hline
-        Marco Farias &  \label{M.F.}M.F.  \\ \hline
         Luiz Quelvez &  \label{L.Q.}L.Q.  \\ \hline
-        Erik Queirolo &  \label{E.Q.}E.Q.  \\ \hline
+        Marco Farias &  \label{M.F.}M.F.  \\ \hline
     \end{tabular}
 \end{table} 
  

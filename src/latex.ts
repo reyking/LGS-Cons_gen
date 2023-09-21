@@ -48,20 +48,13 @@ export function abreviacion(str: string) {
 }
 
 
-export function genLtexString(compañias: ({
-    Tarifas: (GetResult<{ Id: number; Empresa_id: number; Nombre: string; Valor: number; Valor_id: number; }, never> & {})[]; Historias: ({
-        Trabajos: ({ Tarifas: GetResult<{ Id: number; Empresa_id: number; Nombre: string; Valor: number; Valor_id: number; }, never> & {}; Personas_trabajo: ({ Personas: GetResult<{ Id: number; Nombre: string; Nombre_corto: string | null; Empresa_id: number; Correo: string | null; }, never> & {}; } & GetResult<{ Id: number; Persona_id: number; Trabajo_id: number; }, never> & {})[]; } & GetResult<{
-            Id: number; Descripcion: string | null; //solo personas unicas
-            //solo personas unicas
-            Empresa_id: number; Fecha_inicio: Date; Fecha_fin: Date | null; Tarifa_id: number; Historia_id: number | null;
-        }, never> & {})[];
-    } & GetResult<{ Id: number; Empresa_id: number; Nombre: string; Descripcion: string; }, never> & {})[];
-} & GetResult<{ Id: number; Nombre: string; }, never> & {})[]): { name: string, data: string }[] {
+export function genLtexString(compañias: ({ Tarifas: ({ Valores: GetResult<{ Id: number; Nombre: string; Conversion: number; }, never> & {}; } & GetResult<{ Id: number; Empresa_id: number; Nombre: string; Valor: number; Valor_id: number; }, never> & {})[]; Historias: ({ Trabajos: ({ Tarifas: GetResult<{ Id: number; Empresa_id: number; Nombre: string; Valor: number; Valor_id: number; }, never> & {}; Personas_trabajo: ({ Personas: GetResult<{ Id: number; Nombre: string; Nombre_corto: string | null; Empresa_id: number; Correo: string | null; }, never> & {}; } & GetResult<{ Id: number; Persona_id: number; Trabajo_id: number; }, never> & {})[]; } & GetResult<{ Id: number; Descripcion: string | null; Empresa_id: number; Fecha_inicio: Date; Fecha_fin: Date | null; Tarifa_id: number; Historia_id: number | null; }, never> & {})[]; } & GetResult<{ Id: number; Empresa_id: number; Nombre: string; Descripcion: string; }, never> & {})[]; } & GetResult<{ Id: number; Nombre: string; }, never> & {})[]): { name: string, data: string, horas: { tarifa: string, tiempoH: number, total: number }[] }[] {
 
 
-    let archivos: { name: string, data: string }[] = [];
+    let archivos: { name: string, data: string, horas: { tarifa: string, tiempoH: number, total: number }[] }[] = [];
     for (const num in compañias) {
         const comp = compañias[num];
+        let horas: { tarifa: string, tiempoH: number, total: number }[] = comp.Tarifas.map(t => ({ tarifa: t.Nombre, tiempoH: 0, total: 0 }));
         let personas: Personas[] = []
 
         let latex = {
@@ -113,10 +106,10 @@ Listado de personas y su abreviación para tareas en las que estuvieron involucr
         })
         tarifas += `\\end{tabular}`;
         latex.tablaTrabajos += `\\\\ \\hline \\hline`
-        
+
         let tnum = 0;
         comp.Historias.forEach((hist, hnum) => {
-
+            if (hist.Trabajos.length === 0) return;
             // for (const hnum in comp.Historias) {
             //     const hist = comp.Historias[hnum];
             latex.tablaHistorias += `\n ${createLinkLtx(hnum)} & ${sanitizar(hist.Nombre)} & ${sanitizar(hist.Descripcion)} &
@@ -143,8 +136,11 @@ Listado de personas y su abreviación para tareas en las que estuvieron involucr
                 latex.tablaTrabajos += ` & ${horaInicio.format("DD/MM/YY hh:mm")} `
                 comp.Tarifas.forEach((t, ind) => {
                     latex.tablaTrabajos += ' & '
-                    if (t.Id == trab.Tarifa_id)
+                    if (t.Id == trab.Tarifa_id) {
                         latex.tablaTrabajos += +duracion
+                        let h = horas.find(h => h.tarifa === t.Nombre)
+                        if(h) h.tiempoH += duracion
+                    }
                 })
                 latex.tablaTrabajos += `\\\\ \\hline \n`
 
@@ -177,7 +173,11 @@ Listado de personas y su abreviación para tareas en las que estuvieron involucr
             latex.tablaPersonas += `
         ${pers.Nombre} & ${createLinkLtx(pers.Nombre_corto)} \\\\ \\hline`
         }
-        archivos.push({ name: comp.Nombre, data: inicio + latex.tablaHistorias + finTabla + latex.tablaTrabajos + finLongTable + '\\newpage' + latex.tablaPersonas + finTabla + latex.tablaTarifas + finTabla + fin })
+        comp.Tarifas.forEach(t => {
+            let h = horas.find(h => h.tarifa === t.Nombre)
+                        if(h) h.total = h.tiempoH*t.Valor*t.Valores.Conversion
+        })
+        archivos.push({ name: comp.Nombre, data: inicio + latex.tablaHistorias + finTabla + latex.tablaTrabajos + finLongTable + '\\newpage' + latex.tablaPersonas + finTabla + latex.tablaTarifas + finTabla + fin ,horas})
     }
     return archivos
 }
