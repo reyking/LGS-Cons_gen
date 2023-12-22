@@ -16,9 +16,9 @@ const inicio = `\\documentclass{article}
 \\usepackage{xcolor}
 \\usepackage{longtable,makecell,multirow}
 \\begin{document}
-\\section*{Resumen de actividades realizadas agosto/2023}
+\\section*{Resumen de actividades realizadas noviembre/2023}
 
-En el siguiente reporte se presentan las actividades realizadas por Hans Chritopher Raddatz Garcia durante el mes de agosto del 2023, donde se numeran las actividades principales dentro de la tabla de "Historias" con su total de horas, según las tarifas previamente acordadas, estas tareas principales se subdividen en cada trabajo realizado y estos son descritos en la tabla de "Tareas y detalles" indicando una descripción breve de lo realizado, las personas que estuvieron presente si es que las hubo y el tiempo en horas según cada tarifa.
+En el siguiente reporte se presentan las actividades realizadas por Hans Chritopher Raddatz Garcia durante el mes de noviembre del 2023, donde se numeran las actividades principales dentro de la tabla de "Historias" con su total de horas, según las tarifas previamente acordadas, estas tareas principales se subdividen en cada trabajo realizado y estos son descritos en la tabla de "Tareas y detalles" indicando una descripción breve de lo realizado, las personas que estuvieron presente si es que las hubo y el tiempo en horas según cada tarifa.
 Finalmente, se presenta las simbologías de tarifas y personas, además cada texto en azul implica que es un vínculo a su respectiva definición dentro de otra tabla, el cual además es clickeable. 
 `
 const fin = `\\end{document}`
@@ -44,7 +44,7 @@ function sanitizar(str: string) {
     return str.split('_').join('\\_')
 }
 export function abreviacion(str: string) {
-    return str.toUpperCase().split(' ').flatMap(c => c[0]).join('')
+    return str.toUpperCase().split(' ').filter(s=>s.length>2).flatMap(c => c[0]).join('')
 }
 
 
@@ -72,10 +72,10 @@ En la siguiente tabla se presentan las historias o desarrollos principales con s
 \\section{Tareas y detalles}
 A continuación se presentan las tareas realizadas con su respectiva explicación, número de historia, un acrónimo de o las personas involucradas en la realización de la tarea si aplica y finalmente un detalle de horas totales trabajadas separado por cada tipo de tarifa.
 
-\\begin{longtable}{|m{0.5cm}|m{1.2cm}|p{5cm}|m{1.5cm}|m{1.5cm}||c|c|c|c||}
+\\begin{longtable}{|m{0.5cm}|m{1.2cm}|p{5cm}|m{1.5cm}|m{1.5cm}||c|c|c|c|c|c|    |}
         \\hline
         \\multirow{2}{=}{\\centering{\\textbf{N°}}} & \\multirow{2}{=}{\\centering{\\textbf{N°Hist}}} & \\multirow{2}{=}{\\centering{\\textbf{Detalle Tarea}}}  & \\multirow{2}{=}{\\textbf{Personas}} & \\multirow{2}{=}{\\textbf{Fecha}} &   
-        \\multicolumn{4}{c|}{
+        \\multicolumn{6}{c|}{
             \\textbf{Horas trabajadas [hrs]}
         } \\\\ 
         \\hhline{~~~~~----}
@@ -139,7 +139,7 @@ Listado de personas y su abreviación para tareas en las que estuvieron involucr
                     if (t.Id == trab.Tarifa_id) {
                         latex.tablaTrabajos += +duracion
                         let h = horas.find(h => h.tarifa === t.Nombre)
-                        if(h) h.tiempoH += duracion
+                        if (h) h.tiempoH += duracion
                     }
                 })
                 latex.tablaTrabajos += `\\\\ \\hline \n`
@@ -175,9 +175,9 @@ Listado de personas y su abreviación para tareas en las que estuvieron involucr
         }
         comp.Tarifas.forEach(t => {
             let h = horas.find(h => h.tarifa === t.Nombre)
-                        if(h) h.total = h.tiempoH*t.Valor*t.Valores.Conversion
+            if (h) h.total = h.tiempoH * t.Valor * t.Valores.Conversion
         })
-        archivos.push({ name: comp.Nombre, data: inicio + latex.tablaHistorias + finTabla + latex.tablaTrabajos + finLongTable + '\\newpage' + latex.tablaPersonas + finTabla + latex.tablaTarifas + finTabla + fin ,horas})
+        archivos.push({ name: comp.Nombre, data: inicio + latex.tablaHistorias + finTabla + latex.tablaTrabajos + finLongTable + '\\newpage' + latex.tablaPersonas + finTabla + latex.tablaTarifas + finTabla + fin, horas })
     }
     return archivos
 }

@@ -5,8 +5,8 @@ const prisma = new PrismaClient()
 
 const test = false
 
-const inicio = new Date("09-01-2023")
-const fin = new Date("10-01-2023")
+const inicio = new Date("11-01-2023")
+const fin = new Date("12-01-2023")
 console.log(inicio)
 console.log(fin)
 

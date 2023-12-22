@@ -6,9 +6,9 @@
 \usepackage{xcolor}
 \usepackage{longtable,makecell,multirow}
 \begin{document}
-\section*{Resumen de actividades realizadas agosto/2023}
+\section*{Resumen de actividades realizadas noviembre/2023}
 
-En el siguiente reporte se presentan las actividades realizadas por Hans Chritopher Raddatz Garcia durante el mes de agosto del 2023, donde se numeran las actividades principales dentro de la tabla de "Historias" con su total de horas, según las tarifas previamente acordadas, estas tareas principales se subdividen en cada trabajo realizado y estos son descritos en la tabla de "Tareas y detalles" indicando una descripción breve de lo realizado, las personas que estuvieron presente si es que las hubo y el tiempo en horas según cada tarifa.
+En el siguiente reporte se presentan las actividades realizadas por Hans Chritopher Raddatz Garcia durante el mes de noviembre del 2023, donde se numeran las actividades principales dentro de la tabla de "Historias" con su total de horas, según las tarifas previamente acordadas, estas tareas principales se subdividen en cada trabajo realizado y estos son descritos en la tabla de "Tareas y detalles" indicando una descripción breve de lo realizado, las personas que estuvieron presente si es que las hubo y el tiempo en horas según cada tarifa.
 Finalmente, se presenta las simbologías de tarifas y personas, además cada texto en azul implica que es un vínculo a su respectiva definición dentro de otra tabla, el cual además es clickeable. 
 
 \section{Historias desarrolladas}
@@ -20,59 +20,55 @@ En la siguiente tabla se presentan las historias o desarrollos principales con s
         \hline
         \textbf{N°} & \centering{\textbf{Nombre Historia}} & \centering{\textbf{Detalle}} & \textbf{Tiempo Total [hrs]}
         \\ \hline
-  \label{1}1  & Codigos de error API-PAY & Restructurar los codigos de error que envia api-pay en cada endpoint tal que coincida con el mensaje y razon del error &
-            \begin{tabular}{m{4cm}}
-Desarrollo = 1 \\ 
-
-            \end{tabular} 
-            \\ \hline
   \label{2}2  & Review-retro planing & reunion bimensual para oranizar tareas del sprint &
             \begin{tabular}{m{4cm}}
-Desarrollo = 2 \\ 
-\hline \hline
-Soporte y reuniones = 1.5 \\ 
-
-            \end{tabular} 
-            \\ \hline
-  \label{4}4  & onAir para api-ott/admin & generar atributo y control en admin para estado de "al aire" en las series &
-            \begin{tabular}{m{4cm}}
-Soporte y reuniones horario inhábil = 3 \\ 
+Desarrollos en conjunto = 4.75 \\ 
 
             \end{tabular} 
             \\ \hline
   \label{6}6  & Hotfix, revision y solucion de errores & Solucion de problemas no programados en historias &
             \begin{tabular}{m{4cm}}
-Soporte y reuniones = 3.5 \\ 
-\hline \hline
-Desarrollo = 3 \\ 
-\hline \hline
-Soporte y reuniones horario inhábil = 1.5 \\ 
+Desarrollos en conjunto = 7.75 \\ 
 
             \end{tabular} 
             \\ \hline
-  \label{7}7  & Revisión de ventas sin registrar en Odoo & Revisión de ventas sin registrar en Odoo para despubrir proiblemas de implementacion act ual en api pay &
+  \label{11}11  & Corregir logica del cron DueSubscription & corregir la logica que deremina que susbcripcion cancelar evtando el posoz anterior de susbcripciones sin pago pero que mantenian tras el proceso &
             \begin{tabular}{m{4cm}}
-Soporte y reuniones = 4 \\ 
+Desarrollos en conjunto = 1.25 \\ 
 
             \end{tabular} 
             \\ \hline
-  \label{8}8  & Reuniones de sincronizacion & Reuniones de sincronizacion no asocidas a alguna historia en particular &
-            \begin{tabular}{m{4cm}}
-Soporte y reuniones = 1 \\ 
-
-            \end{tabular} 
-            \\ \hline
-  \label{9}9  & Problemas de duplicidad de subscripciones & Corregir los problemas encontrados que pueden generar multiplicidad de subscripciones de pago para los clientes &
+  \label{15}15  & SAC & Revision y correcion de problemas usuarios SAC &
             \begin{tabular}{m{4cm}}
 Desarrollo = 7 \\ 
-\hline \hline
-Soporte y reuniones = 2.5 \\ 
 
             \end{tabular} 
             \\ \hline
-  \label{10}10  & Dias trial mas 1 & Agregar 1 dia a trial para cumplir con oferta &
+  \label{19}19  & relacion cupon-plan en api-pay & Crear y asplicar realicon/restriccion entre cupones/planes &
             \begin{tabular}{m{4cm}}
-Soporte y reuniones = 3.5 \\ 
+Desarrollo = 8 \\ 
+
+            \end{tabular} 
+            \\ \hline
+  \label{20}20  & Cambio de plan & flujo completo para realizar el cambio de un plan a otro por su periodicidad &
+            \begin{tabular}{m{4cm}}
+Desarrollos en conjunto = 5.5 \\ 
+\hline \hline
+Desarrollo = 47 \\ 
+
+            \end{tabular} 
+            \\ \hline
+  \label{21}21  & Idp claro & endpints para obtener informacion del idp e integrar idp claro &
+            \begin{tabular}{m{4cm}}
+Desarrollo = 5.25 \\ 
+\hline \hline
+Desarrollos en conjunto = 2 \\ 
+
+            \end{tabular} 
+            \\ \hline
+  \label{22}22  & Redbull Showrun & Evento de redbull transmitido mediante megaGo &
+            \begin{tabular}{m{4cm}}
+Desarrollos en conjunto en horario inhábil = 5 \\ 
 
             \end{tabular} 
             \\ \hline
@@ -82,63 +78,106 @@ Soporte y reuniones = 3.5 \\
 \section{Tareas y detalles}
 A continuación se presentan las tareas realizadas con su respectiva explicación, número de historia, un acrónimo de o las personas involucradas en la realización de la tarea si aplica y finalmente un detalle de horas totales trabajadas separado por cada tipo de tarifa.
 
-\begin{longtable}{|m{0.5cm}|m{1.2cm}|p{5cm}|m{1.5cm}|m{1.5cm}||c|c|c|c||}
+\begin{longtable}{|m{0.5cm}|m{1.2cm}|p{5cm}|m{1.5cm}|m{1.5cm}||c|c|c|c|c|c|    |}
         \hline
         \multirow{2}{=}{\centering{\textbf{N°}}} & \multirow{2}{=}{\centering{\textbf{N°Hist}}} & \multirow{2}{=}{\centering{\textbf{Detalle Tarea}}}  & \multirow{2}{=}{\textbf{Personas}} & \multirow{2}{=}{\textbf{Fecha}} &   
-        \multicolumn{4}{c|}{
+        \multicolumn{6}{c|}{
             \textbf{Horas trabajadas [hrs]}
         } \\ 
         \hhline{~~~~~----}
         &&&&&  \hyperref[D]{\color{blue}D}  
-&  \hyperref[SYR]{\color{blue}SYR}  
-&  \hyperref[SYRHI]{\color{blue}SYRHI}  
+&  \hyperref[DC]{\color{blue}DC}  
+&  \hyperref[DCHI]{\color{blue}DCHI}  
 &  \hyperref[P]{\color{blue}P}  
+&  \hyperref[SRC]{\color{blue}SRC}  
+&  \hyperref[SRHI]{\color{blue}SRHI}  
 \\ \hline \hline
-                 \label{0}0  &  \hyperref[1]{\color{blue}1}  & Incluir cambios realizados para merge y probar &  
-                 & 13/09/23 08:00  & 1 &  &  & \\ \hline 
+                 \label{0}0  &  \hyperref[2]{\color{blue}2}  & review retro Planing 67 &  
+                  \hyperref[E.Q.]{\color{blue}E.Q.} \newline  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 09/11/23 09:00  &  & 1.5 &  &  &  & \\ \hline 
 
-                 \label{1}1  &  \hyperref[2]{\color{blue}2}  & 	
-review retro planing sprint 61 &  
-                 & 01/09/23 12:00  & 2 &  &  & \\ \hline 
+                 \label{1}1  &  \hyperref[2]{\color{blue}2}  & Review retro Planning &  
+                  \hyperref[E.Q.]{\color{blue}E.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[L.Q.]{\color{blue}L.Q.}  & 23/11/23 09:00  &  & 3.25 &  &  &  & \\ \hline 
 
-                 \label{2}2  &  \hyperref[2]{\color{blue}2}  & Review/retro planing sprint 62 &  
-                 & 15/09/23 09:00  &  & 1.5 &  & \\ \hline 
+                 \label{2}2  &  \hyperref[6]{\color{blue}6}  & Analizar alertas por consultas atrasadas de flow &  
+                 & 09/11/23 09:00  &  & 1.25 &  &  &  & \\ \hline 
 
-                 \label{3}3  &  \hyperref[4]{\color{blue}4}  & Generar release para produccion de api-ott y admin &  
-                 & 13/09/23 02:00  &  &  & 3 & \\ \hline 
+                 \label{3}3  &  \hyperref[6]{\color{blue}6}  & Incidencias registro de ventas MegaGo &  
+                  \hyperref[M.F.]{\color{blue}M.F.}  & 21/11/23 09:00  &  & 0.5 &  &  &  & \\ \hline 
 
-                 \label{4}4  &  \hyperref[6]{\color{blue}6}  & Revisar cambios de paquetes para despliegue &  
-                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 04/09/23 09:00  &  & 2.5 &  & \\ \hline 
+                 \label{4}4  &  \hyperref[6]{\color{blue}6}  & Pruebas y revision de pagos duplicados hacia api clientes &  
+                 & 29/11/23 09:00  &  & 3 &  &  &  & \\ \hline 
 
-                 \label{5}5  &  \hyperref[6]{\color{blue}6}  & Solucionar error asincrono de conexion a base de datos en historial de modificaciones &  
-                 & 04/09/23 12:00  & 3 &  &  & \\ \hline 
+                 \label{5}5  &  \hyperref[6]{\color{blue}6}  & Finalizar pruebas de api clientes &  
+                  \hyperref[V.V.]{\color{blue}V.V.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 30/11/23 09:00  &  & 3 &  &  &  & \\ \hline 
 
-                 \label{6}6  &  \hyperref[6]{\color{blue}6}  & Deploy de cambios en paquetes api-pay &  
-                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.}  & 05/09/23 04:00  &  &  & 1.5 & \\ \hline 
+                 \label{6}6  &  \hyperref[11]{\color{blue}11}  & Revision estado y cambios para bajas de usuaraios &  
+                  \hyperref[M.F.]{\color{blue}M.F.}  & 21/11/23 09:00  &  & 1.25 &  &  &  & \\ \hline 
 
-                 \label{7}7  &  \hyperref[6]{\color{blue}6}  & Creacion de indices en produccion para postgres de api-pay &  
-                 & 15/09/23 01:00  &  & 1 &  & \\ \hline 
+                 \label{7}7  &  \hyperref[15]{\color{blue}15}  & Solucionar casos usuarios pagos &  
+                 & 01/11/23 09:00  & 5 &  &  &  &  & \\ \hline 
 
-                 \label{8}8  &  \hyperref[7]{\color{blue}7}  & Busqueda de problema de pago en clientes con quejas &  
-                 & 05/09/23 07:00  &  & 4 &  & \\ \hline 
+                 \label{8}8  &  \hyperref[15]{\color{blue}15}  & Resolver casos de pagos cleintes &  
+                 & 02/11/23 09:00  & 2 &  &  &  &  & \\ \hline 
 
-                 \label{9}9  &  \hyperref[8]{\color{blue}8}  & Reuniones de sinc &  
-                 & 07/09/23 01:00  &  & 1 &  & \\ \hline 
+                 \label{9}9  &  \hyperref[19]{\color{blue}19}  & Estructura, seed y migraciones de la relacion &  
+                 & 05/11/23 09:00  & 3 &  &  &  &  & \\ \hline 
 
-                 \label{10}10  &  \hyperref[9]{\color{blue}9}  & validacion de estados y anulacion de trancciones cuando exista duplicidad previa a enrolamiento &  
-                 & 11/09/23 12:00  & 3 &  &  & \\ \hline 
+                 \label{10}10  &  \hyperref[19]{\color{blue}19}  & Servicios de relacion cupon-plan &  
+                 & 06/11/23 09:00  & 2 &  &  &  &  & \\ \hline 
 
-                 \label{11}11  &  \hyperref[9]{\color{blue}9}  & anular transacciones y susbcripciones duplicadas que llegen a enrolarse &  
-                  \hyperref[M.F.]{\color{blue}M.F.}  & 13/09/23 09:00  &  & 1.5 &  & \\ \hline 
+                 \label{11}11  &  \hyperref[19]{\color{blue}19}  & endpoint abiertos para planes y relaciones de plan-cupon &  
+                 & 28/11/23 09:00  & 3 &  &  &  &  & \\ \hline 
 
-                 \label{12}12  &  \hyperref[9]{\color{blue}9}  & Generar release para produccion de api-pay &  
-                 & 13/09/23 01:00  &  & 1 &  & \\ \hline 
+                 \label{12}12  &  \hyperref[20]{\color{blue}20}  & Revision pendientes y Plan Anual &  
+                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[E.Q.]{\color{blue}E.Q.}  & 07/11/23 01:00  &  & 1.5 &  &  &  & \\ \hline 
 
-                 \label{13}13  &  \hyperref[9]{\color{blue}9}  & Anulacion de multiplicidad de transacciones al confirmar tarjeta &  
-                 & 20/09/23 11:00  & 4 &  &  & \\ \hline 
+                 \label{13}13  &  \hyperref[20]{\color{blue}20}  & definicion de rutas y estructura para flujo cambio de planes &  
+                 & 06/11/23 09:00  & 3 &  &  &  &  & \\ \hline 
 
-                 \label{14}14  &  \hyperref[10]{\color{blue}10}  & Revision +1 dia al trial y sus correciones &  
-                 & 12/09/23 08:00  &  & 3.5 &  & \\ \hline 
+                 \label{14}14  &  \hyperref[20]{\color{blue}20}  & Estructura inicial y primer endpoint para flujo cambio de plan &  
+                 & 07/11/23 09:00  & 8 &  &  &  &  & \\ \hline 
+
+                 \label{15}15  &  \hyperref[20]{\color{blue}20}  & Revision pendientes y plan anual &  
+                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[P.R.]{\color{blue}P.R.} \newline  \hyperref[E.Q.]{\color{blue}E.Q.}  & 08/11/23 09:00  &  & 1 &  &  &  & \\ \hline 
+
+                 \label{16}16  &  \hyperref[20]{\color{blue}20}  & Flujo de anual a menasual listo sin validaciones &  
+                 & 08/11/23 09:00  & 9 &  &  &  &  & \\ \hline 
+
+                 \label{17}17  &  \hyperref[20]{\color{blue}20}  & Flujos sin validaciones para plan mensual <--> anual &  
+                 & 12/11/23 09:00  & 8 &  &  &  &  & \\ \hline 
+
+                 \label{18}18  &  \hyperref[20]{\color{blue}20}  & test unitarios y mejoras de flujo anual->mensual &  
+                 & 13/11/23 09:00  & 4 &  &  &  &  & \\ \hline 
+
+                 \label{19}19  &  \hyperref[20]{\color{blue}20}  & Reunios estado de plan anual y organizacion de eventos en vivo &  
+                 & 14/11/23 09:00  &  & 1.5 &  &  &  & \\ \hline 
+
+                 \label{20}20  &  \hyperref[20]{\color{blue}20}  & validaciones por estado de transacciones y otros fixes de flujos mensual <--> anual &  
+                 & 14/11/23 09:00  & 5 &  &  &  &  & \\ \hline 
+
+                 \label{21}21  &  \hyperref[20]{\color{blue}20}  & Test unitario flujo mensual --> anual &  
+                  \hyperref[M.F.]{\color{blue}M.F.}  & 15/11/23 09:00  & 6 &  &  &  &  & \\ \hline 
+
+                 \label{22}22  &  \hyperref[20]{\color{blue}20}  & despliegue y configuracion dev para cambio de planes &  
+                 & 20/11/23 09:00  &  & 1.5 &  &  &  & \\ \hline 
+
+                 \label{23}23  &  \hyperref[20]{\color{blue}20}  & control de cupones en plan, mostrar periodicidad de planes y modificaciones en plan anual &  
+                 & 23/11/23 09:00  & 2 &  &  &  &  & \\ \hline 
+
+                 \label{24}24  &  \hyperref[20]{\color{blue}20}  & Actualizar estados de pagos pendientes &  
+                 & 29/11/23 09:00  & 2 &  &  &  &  & \\ \hline 
+
+                 \label{25}25  &  \hyperref[21]{\color{blue}21}  & idp, claro y endpoint de idp &  
+                 & 26/11/23 09:00  & 4 &  &  &  &  & \\ \hline 
+
+                 \label{26}26  &  \hyperref[21]{\color{blue}21}  & revision cambios para idp &  
+                  \hyperref[M.F.]{\color{blue}M.F.}  & 27/11/23 09:00  &  & 2 &  &  &  & \\ \hline 
+
+                 \label{27}27  &  \hyperref[21]{\color{blue}21}  & uso de keycloack, refactors y fixes de endpoints de idp &  
+                 & 27/11/23 09:00  & 1.25 &  &  &  &  & \\ \hline 
+
+                 \label{28}28  &  \hyperref[22]{\color{blue}22}  & Showroom redbull &  
+                  \hyperref[L.Q.]{\color{blue}L.Q.} \newline  \hyperref[M.F.]{\color{blue}M.F.} \newline  \hyperref[P.R.]{\color{blue}P.R.}  & 11/11/23 09:00  &  &  & 5 &  &  & \\ \hline 
 
     \end{longtable} 
  \newpage
@@ -149,8 +188,11 @@ Listado de personas y su abreviación para tareas en las que estuvieron involucr
     \begin{tabular}{|p{6cm}|c|}
         \hline
         \centering{\textbf{Nombre}} & \textbf{abreviacion} \\ \hline
+        Erik Queirolo &  \label{E.Q.}E.Q.  \\ \hline
         Luiz Quelvez &  \label{L.Q.}L.Q.  \\ \hline
         Marco Farias &  \label{M.F.}M.F.  \\ \hline
+        Victor Vilches &  \label{V.V.}V.V.  \\ \hline
+        Pablo Ramirez &  \label{P.R.}P.R.  \\ \hline
     \end{tabular}
 \end{table} 
  
@@ -161,9 +203,11 @@ Listado de personas y su abreviación para tareas en las que estuvieron involucr
     \begin{tabular}{|p{6cm}|c|}
         \hline
         \centering{\textbf{Nombre}} & \textbf{abreviacion} \\ \hline  Desarrollo &  \label{D}D  \\ \hline 
- Soporte y reuniones &  \label{SYR}SYR  \\ \hline 
- Soporte y reuniones horario inhábil &  \label{SYRHI}SYRHI  \\ \hline 
+ Desarrollos en conjunto &  \label{DC}DC  \\ \hline 
+ Desarrollos en conjunto en horario inhábil &  \label{DCHI}DCHI  \\ \hline 
  Presencial &  \label{P}P  \\ \hline 
+ Soporte y reuniones en conjunto &  \label{SRC}SRC  \\ \hline 
+ Soporte y reuniones horario inhabil &  \label{SRHI}SRHI  \\ \hline 
 
     \end{tabular}
 \end{table} 
