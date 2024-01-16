@@ -16,9 +16,9 @@ const inicio = `\\documentclass{article}
 \\usepackage{xcolor}
 \\usepackage{longtable,makecell,multirow}
 \\begin{document}
-\\section*{Resumen de actividades realizadas noviembre/2023}
+\\section*{Resumen de actividades realizadas diciembre/2023}
 
-En el siguiente reporte se presentan las actividades realizadas por Hans Chritopher Raddatz Garcia durante el mes de noviembre del 2023, donde se numeran las actividades principales dentro de la tabla de "Historias" con su total de horas, según las tarifas previamente acordadas, estas tareas principales se subdividen en cada trabajo realizado y estos son descritos en la tabla de "Tareas y detalles" indicando una descripción breve de lo realizado, las personas que estuvieron presente si es que las hubo y el tiempo en horas según cada tarifa.
+En el siguiente reporte se presentan las actividades realizadas por Hans Chritopher Raddatz Garcia durante el mes de diciembre del 2023, donde se numeran las actividades principales dentro de la tabla de "Historias" con su total de horas, según las tarifas previamente acordadas, estas tareas principales se subdividen en cada trabajo realizado y estos son descritos en la tabla de "Tareas y detalles" indicando una descripción breve de lo realizado, las personas que estuvieron presente si es que las hubo y el tiempo en horas según cada tarifa.
 Finalmente, se presenta las simbologías de tarifas y personas, además cada texto en azul implica que es un vínculo a su respectiva definición dentro de otra tabla, el cual además es clickeable. 
 `
 const fin = `\\end{document}`
