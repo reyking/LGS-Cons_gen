@@ -8,7 +8,7 @@ const latexdir = join('./', 'latex')
 const outDir = join(latexdir, `build`)
 const args = `-output-directory=${outDir}`
 const command = `pdflatex`
-const inicio = `\\documentclass{article}
+function inicio(mesSTR: string,anoSTR: string){return `\\documentclass{article}
 \\usepackage[margin=2cm]{geometry}
 \\usepackage{hhline} % For highlighting table borders
 \\usepackage{hyperref}
@@ -16,11 +16,11 @@ const inicio = `\\documentclass{article}
 \\usepackage{xcolor}
 \\usepackage{longtable,makecell,multirow}
 \\begin{document}
-\\section*{Resumen de actividades realizadas febrero/2024}
+\\section*{Resumen de actividades realizadas ${mesSTR}/${anoSTR}}
 
-En el siguiente reporte se presentan las actividades realizadas por Hans Chritopher Raddatz Garcia durante el mes de febrero del 2024, donde se numeran las actividades principales dentro de la tabla de "Historias" con su total de horas, según las tarifas previamente acordadas, estas tareas principales se subdividen en cada trabajo realizado y estos son descritos en la tabla de "Tareas y detalles" indicando una descripción breve de lo realizado, las personas que estuvieron presente si es que las hubo y el tiempo en horas según cada tarifa.
+En el siguiente reporte se presentan las actividades realizadas por Hans Chritopher Raddatz Garcia durante el mes de ${mesSTR} del ${anoSTR}, donde se numeran las actividades principales dentro de la tabla de "Historias" con su total de horas, según las tarifas previamente acordadas, estas tareas principales se subdividen en cada trabajo realizado y estos son descritos en la tabla de "Tareas y detalles" indicando una descripción breve de lo realizado, las personas que estuvieron presente si es que las hubo y el tiempo en horas según cada tarifa.
 Finalmente, se presenta las simbologías de tarifas y personas, además cada texto en azul implica que es un vínculo a su respectiva definición dentro de otra tabla, el cual además es clickeable. 
-`
+`}
 const fin = `\\end{document}`
 const finTabla = `\n    \\end{tabular}\n\\end{table} \n `
 const finLongTable = `\n    \\end{longtable} \n `
@@ -48,7 +48,7 @@ export function abreviacion(str: string) {
 }
 
 
-export function genLtexString(compañias: ({ Tarifas: ({ Valores: GetResult<{ Id: number; Nombre: string; Conversion: number; }, never> & {}; } & GetResult<{ Id: number; Empresa_id: number; Nombre: string; Valor: number; Valor_id: number; }, never> & {})[]; Historias: ({ Trabajos: ({ Tarifas: GetResult<{ Id: number; Empresa_id: number; Nombre: string; Valor: number; Valor_id: number; }, never> & {}; Personas_trabajo: ({ Personas: GetResult<{ Id: number; Nombre: string; Nombre_corto: string | null; Empresa_id: number; Correo: string | null; }, never> & {}; } & GetResult<{ Id: number; Persona_id: number; Trabajo_id: number; }, never> & {})[]; } & GetResult<{ Id: number; Descripcion: string | null; Empresa_id: number; Fecha_inicio: Date; Fecha_fin: Date | null; Tarifa_id: number; Historia_id: number | null; }, never> & {})[]; } & GetResult<{ Id: number; Empresa_id: number; Nombre: string; Descripcion: string; }, never> & {})[]; } & GetResult<{ Id: number; Nombre: string; }, never> & {})[]): { name: string, data: string, horas: { tarifa: string, tiempoH: number, total: number }[] }[] {
+export function genLtexString(compañias: ({ Tarifas: ({ Valores: GetResult<{ Id: number; Nombre: string; Conversion: number; }, never> & {}; } & GetResult<{ Id: number; Empresa_id: number; Nombre: string; Valor: number; Valor_id: number; }, never> & {})[]; Historias: ({ Trabajos: ({ Tarifas: GetResult<{ Id: number; Empresa_id: number; Nombre: string; Valor: number; Valor_id: number; }, never> & {}; Personas_trabajo: ({ Personas: GetResult<{ Id: number; Nombre: string; Nombre_corto: string | null; Empresa_id: number; Correo: string | null; }, never> & {}; } & GetResult<{ Id: number; Persona_id: number; Trabajo_id: number; }, never> & {})[]; } & GetResult<{ Id: number; Descripcion: string | null; Empresa_id: number; Fecha_inicio: Date; Fecha_fin: Date | null; Tarifa_id: number; Historia_id: number | null; }, never> & {})[]; } & GetResult<{ Id: number; Empresa_id: number; Nombre: string; Descripcion: string; }, never> & {})[]; } & GetResult<{ Id: number; Nombre: string; }, never> & {})[], mesSTR:string,anoSTR:string): { name: string, data: string, horas: { tarifa: string, tiempoH: number, total: number }[] }[] {
 
 
     let archivos: { name: string, data: string, horas: { tarifa: string, tiempoH: number, total: number }[] }[] = [];
@@ -72,13 +72,13 @@ En la siguiente tabla se presentan las historias o desarrollos principales con s
 \\section{Tareas y detalles}
 A continuación se presentan las tareas realizadas con su respectiva explicación, número de historia, un acrónimo de o las personas involucradas en la realización de la tarea si aplica y finalmente un detalle de horas totales trabajadas separado por cada tipo de tarifa.
 
-\\begin{longtable}{|m{0.5cm}|m{1.2cm}|p{5cm}|m{1.5cm}|m{1.5cm}||c|c|c|c|c|c|    |}
+\\begin{longtable}{|m{0.3cm}|m{1cm}|p{3cm}|m{1.5cm}|m{1.3cm}||c|c|c|c|c|c|c| |}
         \\hline
         \\multirow{2}{=}{\\centering{\\textbf{N°}}} & \\multirow{2}{=}{\\centering{\\textbf{N°Hist}}} & \\multirow{2}{=}{\\centering{\\textbf{Detalle Tarea}}}  & \\multirow{2}{=}{\\textbf{Personas}} & \\multirow{2}{=}{\\textbf{Fecha}} &   
-        \\multicolumn{6}{c|}{
+        \\multicolumn{7}{c||}{
             \\textbf{Horas trabajadas [hrs]}
         } \\\\ 
-        \\hhline{~~~~~----}
+        \\hhline{~~~~~-------}
         &&&&`,
             tablaPersonas: `
 \\section{Personas}
@@ -133,7 +133,7 @@ Listado de personas y su abreviación para tareas en las que estuvieron involucr
                 const horaInicio = moment(trab.Fecha_inicio);
                 const duracion = roudUp(moment(trab.Fecha_fin).diff(horaInicio, "hours", true));
                 const texto = trab.Tarifas.Id < 50 ? duracion + ' hrs' : `${horaInicio.format("DD/MM/YY HH:MM")} = ${duracion} hrs`;
-                latex.tablaTrabajos += ` & ${horaInicio.format("DD/MM/YY hh:mm")} `
+                latex.tablaTrabajos += ` & ${horaInicio.format("DD/MM/YY ")} `
                 comp.Tarifas.forEach((t, ind) => {
                     latex.tablaTrabajos += ' & '
                     if (t.Id == trab.Tarifa_id) {
@@ -177,7 +177,7 @@ Listado de personas y su abreviación para tareas en las que estuvieron involucr
             let h = horas.find(h => h.tarifa === t.Nombre)
             if (h) h.total = h.tiempoH * t.Valor * t.Valores.Conversion
         })
-        archivos.push({ name: comp.Nombre, data: inicio + latex.tablaHistorias + finTabla + latex.tablaTrabajos + finLongTable + '\\newpage' + latex.tablaPersonas + finTabla + latex.tablaTarifas + finTabla + fin, horas })
+        archivos.push({ name: comp.Nombre, data: inicio(mesSTR,anoSTR) + latex.tablaHistorias + finTabla + latex.tablaTrabajos + finLongTable + '\\newpage' + latex.tablaPersonas + finTabla + latex.tablaTarifas + finTabla + fin, horas })
     }
     return archivos
 }
@@ -189,6 +189,9 @@ export function executeLatex(latexString: string, name: string) {
 
 
     let latex1 = spawnSync(command, [args, infile]);
+    console.log(command)
+    console.log(args)
+    console.log(infile)
     if (latex1.status != 0) throw new Error("no se pudo ejecutar  por primera vez latex");
     let latex2 = spawnSync(command, [args, infile]);
     if (latex2.status != 0) throw new Error("no se pudo ejecutar  por primera vez latex");
